@@ -15,13 +15,13 @@ RED = \033[0;31m
 RESET = \033[0m
 
 CC=cc
-CFLAGS=-Wall -Werror -Wextra
+CFLAGS=-Wall -Werror -Wextra -Iinclude
 
-LIBFT_PATH = includes/libft
+LIBFT_PATH = include/libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
 
-NAME = push_swap
+NAME = miniconcha
 SRC = src/main.c\
 src/lexer/lexer.c
 OBJ = $(SRC:.c=.o)

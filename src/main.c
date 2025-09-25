@@ -14,5 +14,11 @@
 
 int main(int ac, char *av[])
 {
-
+	if (ac == 1 || !av[1])
+		return(1);
+	if(ft_isspace(av[1][0]))
+	{
+		printf("HAY UN ESPACIO");
+	}
+	return(0);
 }
