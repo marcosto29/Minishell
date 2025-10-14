@@ -26,7 +26,7 @@ SRC = src/main.c\
 src/lexer/lexer.c
 OBJ = $(SRC:.c=.o)
 
-HEADER = includes/lexer.h
+HEADER = includes/minishell.h
 
 all: $(NAME)
 

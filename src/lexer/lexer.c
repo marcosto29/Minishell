@@ -5,24 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 18:24:50 by marvin            #+#    #+#             */
-/*   Updated: 2025/09/22 18:24:50 by marvin           ###   ########.fr       */
+/*   Created: 2025/10/14 12:00:47 by marvin            #+#    #+#             */
+/*   Updated: 2025/10/14 12:00:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "minishell.h"
 
-int ft_isspace(char c)
+t_lexer word_reader(char *str)
 {
-	if(c == 32 || (c>= 9 && c<=14))
-		return(-1);
-	return(1);
-}
-int skip_spaces(char *str, int i)
-{
-	int j;
-	j = 0;
-	while (ft_isspace(str[i +j]) == 1)
-		j++;
-	return(j);
+    int i;    
+    i = skip_spaces(str);
 }

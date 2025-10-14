@@ -12,15 +12,6 @@
 
 #ifndef LEXER_H
 #define LEXER_H
-# include "libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdbool.h>
 typedef enum s_tokens
 {
 	PIPE,
@@ -38,4 +29,6 @@ typedef struct s_lexer
 	struct s_lexer	*prev;
 }	t_lexer;
 int ft_isspace(char c);
+int skip_spaces(char *str, int i);
+
 #endif
