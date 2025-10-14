@@ -27,9 +27,9 @@ int skip_spaces(char *str, int i)
 	return(j);
 }
 
-t_token is_operator(char s)
+t_tokens is_operator(char s)
 {
-	static char token arr[] = {
+	static char token_arr[] = {
 		{'|', PIPE},
 		{'>', GREAT},
 		{'<', LESS},
@@ -42,7 +42,7 @@ t_token is_operator(char s)
 		return(token_arr[2]);
 	return(0);	
 }
-t_lexer new_lexer(char *str, char token)
+t_lexer *new_lexer(char *str, char token)
 {
 	t_lexer *new_element;
 	static int i;
@@ -58,5 +58,20 @@ t_lexer new_lexer(char *str, char token)
 	new_element->i = i++;
 	new_element->next = NULL;
 	new_element->prev = NULL;
-	return (new_element);
+	return(new_element);
+}
+
+void ft_lexeradd_back(t_lexer **lexer, t_lexer *new)
+{
+	t_lexer *tmp;
+
+	tmp = (*lexer);
+	if((*lexer))
+	{
+		while (tmp->next !=NULL)
+			tmp = tmp->next;
+		tmp->next = new;		
+	}
+	if(!(*lexer))
+		(*lexer) = new;
 }

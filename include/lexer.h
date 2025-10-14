@@ -30,5 +30,4 @@ typedef struct s_lexer
 }	t_lexer;
 int ft_isspace(char c);
 int skip_spaces(char *str, int i);
-
 #endif

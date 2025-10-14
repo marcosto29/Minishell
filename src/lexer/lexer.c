@@ -14,6 +14,7 @@
 
 t_lexer word_reader(char *str)
 {
-    int i;    
-    i = skip_spaces(str);
+    int i;
+
+    i = skip_spaces(str, 0);
 }
