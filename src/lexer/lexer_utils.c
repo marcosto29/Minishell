@@ -22,25 +22,24 @@ int skip_spaces(char *str, int i)
 {
 	int j;
 	j = 0;
-	while (ft_isspace(str[i + j]) == 1)
+	while (ft_isspace(str[i + j]) == -1)
 		j++;
 	return(j);
 }
 
 t_tokens is_operator(char s)
 {
-	static char token_arr[] = {
+	static char token_arr[3][2] = {
 		{'|', PIPE},
 		{'>', GREAT},
 		{'<', LESS},
 	};
-	if(s == token_arr[0])
-		return(token_arr[0]);
-	if(s == token_arr[1])
-		return(token_arr[1]);
-	if(s == token_arr[2])
-		return(token_arr[2]);
-	return(0);	
+	if(s == token_arr[0][0])
+		return(token_arr[0][1]);
+	if(s == token_arr[1][0])
+		return(token_arr[1][1]);
+	if(s == token_arr[2][0])
+		return(token_arr[2][1]);
 }
 t_lexer *new_lexer(char *str, char token)
 {

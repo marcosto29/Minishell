@@ -23,7 +23,8 @@ LIBFT = $(LIBFT_PATH)/libft.a
 
 NAME = miniconcha
 SRC = src/main.c\
-src/lexer/lexer.c
+src/lexer/lexer.c\
+src/lexer/lexer_utils.c
 OBJ = $(SRC:.c=.o)
 
 HEADER = includes/minishell.h
