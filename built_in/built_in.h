@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution_main.c                                   :+:      :+:    :+:   */
+/*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 14:13:19 by matoledo          #+#    #+#             */
-/*   Updated: 2025/10/26 15:18:19 by matoledo         ###   ########.fr       */
+/*   Created: 2025/10/26 13:39:29 by matoledo          #+#    #+#             */
+/*   Updated: 2025/10/26 14:19:23 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution_shell.h"
+#ifndef BUILT_IN_H
+# define BUILT_IN_H
+# include <stdio.h>
+# include "../execution_shell.h"
 
-int	main(int argc, char *argv[])
-{
-	char	**path;
-	int		i;
+void	echo(char **arguments);
 
-	i = argc + 1;
-	path = ft_calloc(sizeof(char *), 2);
-	while (argv[i] && start_with(argv[i], "PATH") == 1)
-		i++;
-	*path = ft_str_new(argv[i] + 5);
-	path[1] = NULL;
-	if (!path)
-	{
-		printf("PATH not found\n");
-		return (1);
-	}
-	execute_command(argv[1], NULL, path);
-}
+#endif

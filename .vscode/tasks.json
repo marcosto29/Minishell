@@ -4,13 +4,17 @@
             "type": "cppbuild",
             "label": "C/C++: gcc build active file",
             "command": "/usr/bin/gcc",
-            "args": [
-                "-fdiagnostics-color=always",
+           "args": [
                 "-g",
-                "${file}",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "execution_main.c",
+                "command.c",
+                "utils.c",
+                "built_in/echo.c",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
-                ""
+                "minishell"
             ],
             "options": {
                 "cwd": "${fileDirname}"

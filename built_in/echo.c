@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution_main.c                                   :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 14:13:19 by matoledo          #+#    #+#             */
-/*   Updated: 2025/10/26 15:18:19 by matoledo         ###   ########.fr       */
+/*   Created: 2025/10/26 13:06:11 by matoledo          #+#    #+#             */
+/*   Updated: 2025/10/26 15:10:24 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution_shell.h"
+#include "built_in.h"
 
-int	main(int argc, char *argv[])
+void	echo(char **arguments)
 {
-	char	**path;
-	int		i;
-
-	i = argc + 1;
-	path = ft_calloc(sizeof(char *), 2);
-	while (argv[i] && start_with(argv[i], "PATH") == 1)
-		i++;
-	*path = ft_str_new(argv[i] + 5);
-	path[1] = NULL;
-	if (!path)
+	int	i;
+	
+	i = 0;
+	if (arguments)
 	{
-		printf("PATH not found\n");
-		return (1);
+		while (start_with(arguments[i], "-n") == 0)
+			i++;
+		printf("%s", arguments[i]);
 	}
-	execute_command(argv[1], NULL, path);
+	if (i == 0)
+		printf("\n");
 }
