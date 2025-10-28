@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:02:47 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/06/24 12:23:19 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:25:35 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ void				ft_putnbr_fd(int n, int fd);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
 double				ft_atod(char *str);
+int ft_isspace(char c);
 #endif

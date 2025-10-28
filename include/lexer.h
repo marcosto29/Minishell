@@ -14,7 +14,7 @@
 #define LEXER_H
 typedef enum s_tokens
 {
-	PIPE,
+	PIPE = 1,
 	GREAT,
 	GREAT_GREAT,
 	LESS,
@@ -28,9 +28,10 @@ typedef struct s_lexer
 	struct s_lexer	*next;
 	struct s_lexer	*prev;
 }	t_lexer;
-int ft_isspace(char c);
 int skip_spaces(char *str, int i);
 t_tokens is_operator(char s);
 t_lexer *new_lexer(char *str, char token);
 void ft_lexeradd_back(t_lexer **lexer, t_lexer *new);
+t_lexer *handle_tokens(char *str);
+void free_lexer(t_lexer *list);
 #endif

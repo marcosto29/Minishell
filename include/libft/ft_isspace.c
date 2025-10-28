@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 12:21:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/10/28 12:48:48 by aosset-o         ###   ########.fr       */
+/*   Created: 2025/10/28 12:25:01 by aosset-o          #+#    #+#             */
+/*   Updated: 2025/10/28 12:25:18 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int main(void)
+int ft_isspace(char c)
 {
-	char *input = "  echo hello > outfile << EOF | cat";
-    t_lexer *list = handle_tokens(input);
-    t_lexer *tmp = list;
-
-    while (tmp)
-    {
-        printf("token=%d", tmp->token);
-        if (tmp->str)
-            printf(" str=\"%s\"", tmp->str);
-        printf("\n");
-        tmp = tmp->next;
-    }
-    free_lexer(list);
-    return 0;	
+	if(c == 32 || (c>= 9 && c<=14))
+		return(1);
+	return(0);
 }
