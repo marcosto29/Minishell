@@ -26,28 +26,26 @@ int read_operator(int i, char *str, t_lexer **lexer)
 {
     if(is_operator(str[i]) == GREAT && is_operator(str[i + 1]) == GREAT)
     {
-        if(!add_node(NULL,lexer, GREAT_GREAT))
-            return(0);
+        add_node(NULL,lexer, GREAT_GREAT);
         return(2);
     }
     if(is_operator(str[i]) == LESS && is_operator(str[i + 1]) == LESS)
     { 
-        if(!add_node(NULL,lexer, LESS_LESS))
-            return(0);
+        add_node(NULL,lexer, LESS_LESS);
         return(2);
     }
     if(is_operator(str[i]) == GREAT)
     {
-        if(!add_node(NULL,lexer, GREAT))
-            return(0);
+        add_node(NULL,lexer, GREAT);
         return(1);
     }
     if(is_operator(str[i]) == LESS)
     {
-        if(!add_node(NULL,lexer, LESS))
-            return(0);
+        add_node(NULL,lexer, LESS);
         return(1);
     }
+    if(is_operator(str[i]) == PIPE)
+        return(add_node(NULL,lexer, PIPE), 1);
     return(0);
 }
 int read_word(int i, char *str, t_lexer **lexer)
@@ -58,6 +56,8 @@ int read_word(int i, char *str, t_lexer **lexer)
     j = 0;
     while (str[i+j])
     {
+        j += handle_quotes(i + j, str, 34);
+		j += handle_quotes(i + j, str, 39);
         if(is_operator(str[i+j]) || ft_isspace(str[i + j]))
             break;
         j++;
@@ -83,7 +83,7 @@ t_lexer *handle_tokens(char *str)
     while (str[i])
     {
         j = 0;
-        i += skip_spaces(str, j);
+        i += skip_spaces(str, i);
         if(is_operator(str[i]))
             j = read_operator(i, str, &list);
         else

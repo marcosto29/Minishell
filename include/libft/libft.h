@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:02:47 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/10/28 12:25:35 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/03 13:51:18 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
 double				ft_atod(char *str);
 int ft_isspace(char c);
+int skip_spaces(char *str, int i);
 #endif

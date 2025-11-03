@@ -12,13 +12,19 @@
 
 #include "minishell.h"
 
-int skip_spaces(char *str, int i)
+int	handle_quotes(int i, char *str, char del)
 {
-	int j;
+	int	j;
+
 	j = 0;
-	while (ft_isspace(str[i + j]) && str[i + j])
+	if (str[i + j] == del)
+	{
 		j++;
-	return(j - 1);
+		while (str[i + j] != del && str[i + j])
+			j++;
+		j++;
+	}
+	return (j);
 }
 
 t_tokens is_operator(char s)
@@ -66,7 +72,7 @@ void ft_lexeradd_back(t_lexer **lexer, t_lexer *new)
 	{
 		while (tmp->next !=NULL)
 			tmp = tmp->next;
-		tmp->next = new;		
+		tmp->next = new;	
 	}
 	if(!(*lexer))
 		(*lexer) = new;

@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   skip_spaces.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 12:21:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/03 17:45:02 by aosset-o         ###   ########.fr       */
+/*   Created: 2025/11/03 13:50:38 by aosset-o          #+#    #+#             */
+/*   Updated: 2025/11/03 13:52:11 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(void)
+int skip_spaces(char *str, int i)
 {
-	char *input = "echo \"'$USER'\"";
-    t_lexer *list = handle_tokens(input);
-    t_lexer *tmp = list;
-
-    while (tmp)
-    {
-        printf("token=%d", tmp->token);
-        if (tmp->str)
-            printf(" str=\"%s\"", tmp->str);
-        printf("\n");
-        tmp = tmp->next;
-    }
-    free_lexer(list);
-    return 0;
+	int j;
+	j = 0;
+	while (ft_isspace(str[i + j]) && str[i + j])
+		j++;
+	return(j);
 }

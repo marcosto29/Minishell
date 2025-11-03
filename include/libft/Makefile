@@ -6,7 +6,7 @@
 #    By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/08 13:02:54 by aosset-o          #+#    #+#              #
-#    Updated: 2025/10/28 12:26:05 by aosset-o         ###   ########.fr        #
+#    Updated: 2025/11/03 13:51:30 by aosset-o         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = 	ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
 		ft_split.c ft_itoa.c ft_strmapi.c \
 		ft_striteri.c ft_atod.c ft_isspace.c \
+		skip_spaces.c
 
 OBJ = $(SRC:.c=.o)
 INCLUDE = libft.h
