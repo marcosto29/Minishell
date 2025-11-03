@@ -13,6 +13,7 @@
                 "command.c",
                 "utils.c",
                 "built_in/echo.c",
+                "built_in/pwd.c",
                 "-o",
                 "minishell"
             ],

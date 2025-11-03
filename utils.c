@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2025/10/26 14:28:55 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/10/29 20:17:48 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ int	contains_string(char **string_list, char *string)
 		string_list++;
 	}
 	return (1);
+}
+
+size_t	ft_size_d(void **pointer, size_t data_type)
+{
+	size_t	size;
+
+	size = 0;
+	if (!pointer)
+		return (size);
+	while (*(char *)pointer)
+	{
+		size++;
+		pointer++;
+	}
+	return (size / data_type);
 }
 
 size_t	ft_size(void *pointer, size_t data_type)
@@ -40,22 +55,19 @@ size_t	ft_size(void *pointer, size_t data_type)
 
 void	*ft_calloc(size_t type, size_t size)
 {
-	void	*list;
-	void	*aux;
+	char	*ptr;
 	size_t	counter;
 
 	counter = 0;
-	list = malloc(type * size);
-	aux = list;
-	if (!list)
+	ptr = malloc(type * size);
+	if (!ptr)
 		return (NULL);
 	while (counter < type * size)
 	{
-		*(char *)aux = '\0';
-		aux++;
+		ptr[counter] = '\0';
 		counter++;
 	}
-	return (list);
+	return ((void *)ptr);
 }
 
 void	string_split(char **splitted, char *to_split, char divider)
@@ -67,21 +79,22 @@ void	string_split(char **splitted, char *to_split, char divider)
 	{
 		divide_number = 0;
 		aux = to_split;
-		while (*aux != divider && *aux)
+		while (*aux && *aux != divider)
 		{
 			divide_number++;
 			aux++;
 		}
 		*splitted = ft_calloc(sizeof(char), divide_number + 1);
 		aux = *splitted;
-		while (*to_split != divider && *to_split)
+		while (*to_split && *to_split != divider)
 		{
 			*aux = *to_split;
 			aux++;
 			to_split++;
 		}
 		splitted++;
-		to_split++;
+		if (*to_split)
+			to_split++;
 	}
 }
 
@@ -107,17 +120,18 @@ char	**split(char *string, char divider)
 char	*ft_str_new(char *string)
 {
 	int		size;
+	int		i;
 	char	*new_string;
-	char	*aux;
 
 	size = ft_size(string, sizeof(char));
 	new_string = ft_calloc(sizeof(char), size + 1);
-	aux = new_string;
-	while (*string)
+	if (!new_string)
+		return (NULL);
+	i = 0;
+	while (string[i])
 	{
-		*aux = *string;
-		aux++;
-		string++;
+		new_string[i] = string[i];
+		i++;
 	}
 	return (new_string);
 }
@@ -156,4 +170,18 @@ int	start_with(char	*string, char *find)
 		find++;
 	}
 	return (0);
+}
+
+void	free_double(char **pointer)
+{
+	char **aux;
+	
+	aux = pointer;
+	while (*aux)
+	{
+		free(*aux);
+		aux++;
+	}
+	free(pointer);
+	pointer = NULL;
 }

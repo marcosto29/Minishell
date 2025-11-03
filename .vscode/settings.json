@@ -59,6 +59,7 @@
   "files.associations": {
     "execution_shell.h": "c",
     "built_in.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "wait.h": "c"
   }
 }
