@@ -47,10 +47,7 @@ t_lexer *new_lexer(char *str, char token)
 	t_lexer *new_element;
 	static int i;
 
-	i = 0;
 	new_element = malloc(sizeof(t_lexer));
-	if(!new_element)
-		return(0);
 	if (!new_element)
 		return (0);
 	new_element->str = str;
@@ -72,7 +69,8 @@ void ft_lexeradd_back(t_lexer **lexer, t_lexer *new)
 	{
 		while (tmp->next !=NULL)
 			tmp = tmp->next;
-		tmp->next = new;	
+		tmp->next = new;
+		new->prev = tmp;  	
 	}
 	if(!(*lexer))
 		(*lexer) = new;

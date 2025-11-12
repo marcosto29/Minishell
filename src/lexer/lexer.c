@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 int add_node(char *str, t_lexer **list, t_tokens token)
 {
     t_lexer *node;
@@ -89,6 +90,6 @@ t_lexer *handle_tokens(char *str)
         else
             j = read_word(i, str, &list);
         i += j;
-    }    
+    } 
     return(list);
 }
