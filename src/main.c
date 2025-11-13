@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:21:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/12 19:45:58 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/13 19:11:22 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,25 @@
 
 int main(void)
 {
-	char *input = "ls -l | echo > a";
+	char *input = "ls -l | echo";
     t_lexer *list = handle_tokens(input);
     t_lexer *tmp = list;
-    
-    int i = get_pipe_position(tmp);
+    int i = 0;
 
-    while (tmp)
+    t_simple_cmds *cmd_1 = malloc(sizeof(t_simple_cmds));
+    t_simple_cmds *cmd_2 = malloc(sizeof(t_simple_cmds));
+    tmp = fill_cmds(cmd_1, tmp);
+    while (cmd_1->str[i])
     {
-        printf("token=%d ", tmp->token);
-        printf("i=%d ", tmp->i);
-        if (tmp->str)
-            printf(" str=\"%s\"", tmp->str);
-        printf("\n");
-        tmp = tmp->next;
+        printf("%s\n", cmd_1->str[i]);
+        i++;
     }
-    /*tmp = list;
-    t_simple_cmds *list_2 = parser(tmp);
-    t_simple_cmds *tmp_2 = list_2;*/
-    tmp = list;
-    while (tmp->i < i)
+    tmp = fill_cmds(cmd_2, tmp);
+    i = 0;
+    while (cmd_2->str[i])
     {
-        //tmp_2->str[tmp->i] = tmp->str;
-        printf("%d\n", tmp->i);
-        tmp = tmp->next;
+        printf("%s\n", cmd_2->str[i]);
+        i++;
     }
     free_lexer(list);
     return 0;

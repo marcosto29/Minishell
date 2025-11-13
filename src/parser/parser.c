@@ -6,42 +6,41 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/12 19:46:50 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/13 19:22:12 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int get_pipe_position(t_lexer *list)
+int get_pipe_position(t_lexer *start)
 {
-    while (list)
+    int cnt = 0;
+    while (start && start->token != PIPE)
     {
-        if(list->token == 1)
-            return(list->i);
-        list = list->next;
+        cnt++;
+        start = start->next;
     }
-    return(0); 
+    return(cnt);
 }
-void handle_pipes(t_simple_cmds *commands, t_lexer *lexer)
+t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start)
 {
+    int pos;
     int i;
-
-    i = get_pipe_position(lexer);
-    while (lexer->i < i)
-    {
-        commands->str[lexer->i] = lexer->str;
-        lexer = lexer->next;
-    }
     
+    pos = get_pipe_position(start);
+    printf("%d\n", pos);
+    i = 0;
+    cmd->str = malloc(sizeof(char *) * (pos + 1));
+    if(pos>0)
+    {
+        while (i < pos)
+        {
+            cmd->str[i] = ft_strdup(start->str);          
+            start = start->next;
+            i++;
+        } 
+    }
+    if (start && start->token == PIPE)
+        return (start->next);
+    return (start); 
 }
-t_simple_cmds *parser(t_lexer *lexer)
-{
-    t_simple_cmds *list;
-
-    list = malloc(sizeof(t_simple_cmds));
-    if(!list)
-        return(0);
-    handle_pipes(list, lexer);
-    return(list);
-}
-

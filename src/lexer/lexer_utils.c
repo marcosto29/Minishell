@@ -70,7 +70,7 @@ void ft_lexeradd_back(t_lexer **lexer, t_lexer *new)
 		while (tmp->next !=NULL)
 			tmp = tmp->next;
 		tmp->next = new;
-		new->prev = tmp;  	
+		new->prev = tmp;
 	}
 	if(!(*lexer))
 		(*lexer) = new;
