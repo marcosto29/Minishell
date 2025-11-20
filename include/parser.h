@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:47:26 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/13 18:39:59 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:35:20 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ typedef struct s_simple_cmds
 	struct s_simple_cmds			*prev;
 }	t_simple_cmds;
 t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start);
+void free_parcer(t_simple_cmds *list);
 #endif

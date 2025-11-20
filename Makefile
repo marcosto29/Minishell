@@ -15,7 +15,7 @@ RED = \033[0;31m
 RESET = \033[0m
 
 CC=cc
-CFLAGS=-Wall -Werror -Wextra -Iinclude
+CFLAGS=-Wall -Werror -Wextra -Iinclude #-fsanitize=address
 
 LIBFT_PATH = include/libft
 

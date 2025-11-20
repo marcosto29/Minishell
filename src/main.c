@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:21:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/13 19:11:22 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:37:48 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	char *input = "ls -l | echo";
+	char *input = "ls -l | echo > patata";
     t_lexer *list = handle_tokens(input);
     t_lexer *tmp = list;
     int i = 0;
@@ -32,8 +32,11 @@ int main(void)
     while (cmd_2->str[i])
     {
         printf("%s\n", cmd_2->str[i]);
+        printf("%s\n", cmd_2->hd_file_name);
         i++;
     }
     free_lexer(list);
+    free_parcer(cmd_1);
+    free_parcer(cmd_2); 
     return 0;
 }
