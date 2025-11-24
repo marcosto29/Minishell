@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:21:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/20 16:37:48 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:05:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 int main(void)
 {
-	char *input = "ls -l | echo > patata";
+	char *input = "echo hello | wc -l";
     t_lexer *list = handle_tokens(input);
     t_lexer *tmp = list;
     int i = 0;
@@ -32,9 +31,12 @@ int main(void)
     while (cmd_2->str[i])
     {
         printf("%s\n", cmd_2->str[i]);
-        printf("%s\n", cmd_2->hd_file_name);
+        //printf("%d\n", i);
+        if(cmd_2->hd_file_name)
+            printf("%s\n", cmd_2->hd_file_name);
         i++;
     }
+    //printf("%d\n", cmd_2->num_redirections);
     free_lexer(list);
     free_parcer(cmd_1);
     free_parcer(cmd_2); 
