@@ -6,12 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/07 11:45:17 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/07 13:12:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution_shell.h"
-#include "built_in/built_in.h"
+#include "minishell.h"
 
 void	search_built_in_command(char *command, char **args)
 {

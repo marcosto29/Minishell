@@ -6,11 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:18:01 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/07 12:11:50 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/07 13:12:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution_shell.h"
+#include "minishell.h"
 
 void	initialize_env(t_dictionary ***env, char **env_arg)
 {

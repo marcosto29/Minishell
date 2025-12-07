@@ -21,7 +21,7 @@ LIBFT_PATH = include/libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
 
-NAME = miniconcha
+NAME = conchita
 SRC = src/main.c\
 src/lexer/lexer.c\
 src/lexer/lexer_utils.c\
