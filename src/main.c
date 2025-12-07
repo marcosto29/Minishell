@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:21:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/24 19:05:21 by marvin           ###   ########.fr       */
+/*   Updated: 2025/12/07 11:32:52 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 int main(void)
 {
-	char *input = "echo hello | wc -l";
+	char *input = "echo > patata | wc -l";
     t_lexer *list = handle_tokens(input);
     t_lexer *tmp = list;
     int i = 0;
@@ -24,6 +24,8 @@ int main(void)
     while (cmd_1->str[i])
     {
         printf("%s\n", cmd_1->str[i]);
+        if(cmd_1->hd_file_name)
+            printf("%s\n", cmd_1->hd_file_name);
         i++;
     }
     tmp = fill_cmds(cmd_2, tmp);

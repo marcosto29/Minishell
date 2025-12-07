@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/24 19:01:19 by marvin           ###   ########.fr       */
+/*   Updated: 2025/12/07 11:56:34 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start)
     }
     if (start && start->token == PIPE)
         return (start->next);
-    return (start); 
+    return (start);
 }
