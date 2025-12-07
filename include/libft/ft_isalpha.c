@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 21:07:34 by matoledo          #+#    #+#             */
-/*   Updated: 2025/10/29 21:19:01 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/07 16:18:33 by aosset-o          #+#    #+#             */
+/*   Updated: 2025/04/09 15:59:43 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built_in.h"
+#include "libft.h"
 
-void cd(char **args)
+int	ft_isalpha(int c)
 {
-	if (chdir(args[0]) == -1)
-		printf("cd: %s: %s\n", args[0], strerror(errno));
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }

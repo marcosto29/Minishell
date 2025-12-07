@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 18:35:28 by matoledo          #+#    #+#             */
-/*   Updated: 2025/10/29 21:18:47 by matoledo         ###   ########.fr       */
+/*   Created: 2025/04/12 11:54:10 by aosset-o          #+#    #+#             */
+/*   Updated: 2025/04/12 12:44:26 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built_in.h"
+#include "libft.h"
 
-void	pwd()
+char	*ft_strdup(const char *s)
 {
-	size_t	size;
-	char	*directory;
-	
-	size = 512;
-	directory = getcwd(NULL, size);
-	if (directory == NULL)
-		perror("Error");
-	printf("%s\n", directory);
-	free(directory);
+	char	*str;
+	int		i;
+
+	str = (char *)malloc(ft_strlen((char *)s) + 1);
+	i = 0;
+	if (str == NULL)
+		return (str);
+	while (s[i])
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
