@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:13:19 by matoledo          #+#    #+#             */
-/*   Updated: 2025/10/29 21:51:48 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/07 12:06:00 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ int	main(int argc, char *argv[])
 {
 	char	**path;
 	char	**args;
+	t_dictionary	**env;
 	int		i;
 
+	env = environment(NULL, argv + argc + 1, NULL);
+	printf("%s", (char *)env[0]->key);
 	i = argc + 1;
 	path = ft_calloc(sizeof(char *), 2);
 	args = ft_calloc(sizeof(char *), 2);
@@ -37,8 +40,11 @@ int	main(int argc, char *argv[])
 	}
 	path[1] = NULL;
 	//importante pasar esto para que haya buen mensaje de error
-	args[0] = ft_str_new(argv[2]);
-	args[1] = NULL;
+	if (argv[2])
+	{
+		args[0] = ft_str_new(argv[2]);
+		args[1] = NULL;
+	}
 	//Aquí hay que cambiar el execute command para que reciba de argumentos los commandos como tal
 	// también hay que implementar la redirección de pipes y generación de hijos
 	execute_command(argv[1], args, path);

@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       "args": [
-        "cd",
+        "pwd",
       ],
       "stopAtEntry": false,
       "externalConsole": false,
