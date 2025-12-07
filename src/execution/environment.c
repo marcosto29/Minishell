@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:18:01 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/07 13:12:25 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:08:59 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,20 @@ t_dictionary	**environment(char *operation, char **env_arg, t_dictionary **dict_
 	if (start_with(operation, "set") == 0)
 		env = dict_env;
 	return (NULL);
+}
+
+char *find_key(char *str)
+{
+	t_dictionary **env;
+	int i;
+	
+	i = 0;
+	env = environment("get", NULL, NULL);
+	while (env[i])
+	{
+		if(start_with((char *)env[i]->key, str) == 0)
+			return((char *)env[i]->value);
+		i++;
+	}
+	return(ft_putendl_fd("key not found", 2), NULL);	
 }

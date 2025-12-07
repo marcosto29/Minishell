@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 10:21:40 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/04/10 11:46:28 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:29:54 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,3 @@ int	ft_toupper(int c)
 		c -= 32;
 	return (c);
 }
-/*
-int main(void)
-{
-	int c;
-	c = ft_toupper('!');
-	write(1, &c, 1);
-}*/

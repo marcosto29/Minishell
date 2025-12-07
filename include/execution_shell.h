@@ -3,22 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execution_shell.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2025/11/11 20:10:21 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:34:17 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_SHELL_H
 # define EXECUTION_SHELL_H
-# include <stdlib.h>
-# include <stdio.h>
-# include <sys/wait.h>
-# include <unistd.h>
-# include <errno.h>
-# include <string.h>
-
+#include <unistd.h>
 typedef	struct dictionary
 {
 	void	*key;
@@ -36,5 +30,5 @@ void			execute_command(char *command, char **arguments, char **environment);
 int				contains_string(char **string_list, char *string);
 void			free_double(char **pointer);
 t_dictionary	**environment(char *operation, char **env_arg, t_dictionary **dict_env);
-
+char *find_key(char *str);
 #endif

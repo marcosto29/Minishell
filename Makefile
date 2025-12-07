@@ -14,8 +14,8 @@ GREEN = \033[0;32m
 RED = \033[0;31m
 RESET = \033[0m
 
-CC=cc
-CFLAGS=-Wall -Werror -Wextra -Iinclude #-fsanitize=address
+CC=gcc
+CFLAGS=-Wall -Werror -Wextra -Iinclude -g #-fsanitize=address
 
 LIBFT_PATH = include/libft
 
@@ -23,9 +23,11 @@ LIBFT = $(LIBFT_PATH)/libft.a
 
 NAME = conchita
 SRC = src/main.c\
-src/lexer/lexer.c\
-src/lexer/lexer_utils.c\
-src/parser/parser.c
+src/lexer/lexer.c src/lexer/lexer_utils.c\
+src/parser/parser.c\
+src/execution/execution_utils.c src/execution/environment.c src/execution/command.c\
+src/built_in/cd.c src/built_in/echo.c src/built_in/pwd.c
+
 OBJ = $(SRC:.c=.o)
 
 HEADER = includes/minishell.h

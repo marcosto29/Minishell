@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:47:26 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/20 16:35:20 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:19:37 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,9 @@
 #ifndef PARSER_H
 #define PARSER_H
 #include "minishell.h"
-typedef enum s_builtins
-{
-	ECHO = 1,
-	CD,
-	PWD,
-	EXPORT,
-	UNSET,
-	ENV,
-	EXIT,
-} t_builtins;
 typedef struct s_simple_cmds
 {
 	char                    **str;
-	t_builtins              built_ins;
 	int                     num_redirections;
 	char                    *hd_file_name;
 	t_lexer                 *tokens;

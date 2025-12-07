@@ -1,2 +1,4 @@
 /.vscode
 conchita
+*.o
+*.a

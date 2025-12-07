@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 12:46:02 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/04/23 16:44:15 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:28:48 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-/*#include <stdio.h>
-int main (void)
-{
-	printf("%d\n", count_digits(-12345));
-	return(0);
-}*/

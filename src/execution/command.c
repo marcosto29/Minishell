@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/07 13:12:25 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:47:16 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ int	execute_built_in_command(char *command, char **arguemnts)
 	return (1);
 }
 
-char	*search_bash_command(char *command, char **env)
+char	*search_bash_command(char *command)
 {
 	char	**divided_path;
 	char	**aux;
 	char	*joined_path;
 	char	*joined_path2;
 
-	divided_path = split(env[0] + 5, ':');
+	divided_path = split(find_key("PATH"), ':');
 	aux = divided_path;
 	while (*divided_path)
 	{
@@ -77,8 +77,8 @@ void	execute_bash_command(char *command, char **args, char **env)
 	pid_t	p;
 
 	p = fork();
-	if (p == 0) {
-		command_path = search_bash_command(command, env);
+	if (p != 0) {
+		command_path = search_bash_command(command);
 		if (!command_path)
 			perror(command);
 		if (execve(command_path, args, env) == -1)

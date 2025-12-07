@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 18:01:53 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/04/24 14:11:58 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:29:05 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,21 +97,3 @@ char	**ft_split(char const *s, char c)
 	return (NULL);
 }
 
-/*#include <stdio.h>
-int	main(void)
-{
-	printf("%d\n", count_words("     aa    bbb      ", ' '));
-	
-
-	for (int i = 0; expected[i]; i++)
-	{
-			if (expected[i] != ((void*)0))
-			{
-				printf("mal\n");
-				return (0);
-			}
-	}
-	printf("bien\n");
-	free(expected);
-	return (0);
-}*/

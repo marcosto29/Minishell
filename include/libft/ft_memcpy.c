@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 12:21:07 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/04/11 13:25:17 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:28:52 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,3 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-/*#include <string.h>
-#include <stdio.h>
-
-int main(void)
-{
-	char source[] = "";
-	char target[] = "";
-  	printf( "Before memcpy, target is \"%s\"\n", target );
-  	memcpy( target, source, sizeof(source));
-  	printf( "After memcpy, target becomes \"%s\"\n", target );
-}*/

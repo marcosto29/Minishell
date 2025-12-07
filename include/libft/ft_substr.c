@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 12:50:50 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/10/28 12:36:59 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:29:36 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str[i] = '\0';
 	return (str);
 }
-// int main (void)
-// {
-// 	char *c=ft_substr("0123456789",9,10);
-// 	printf("%s\n",c);
-// 	return(0);
-// }
+

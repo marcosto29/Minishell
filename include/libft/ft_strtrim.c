@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:32:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/04/22 13:58:50 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:29:33 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,4 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str = ft_substr(s1, count, (ft_strlen(s1) - count - count_rev));
 	return (str);
 }
-/*#include <stdio.h>
 
-int	main(void)
-{
-	printf("%s\n", ft_strtrim("aaaaabcbdefabcada", "abc"));
-	return (0);
-}*/
