@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/07 13:12:25 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/09 21:14:03 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	contains_string(char **string_list, char *string)
 	return (1);
 }
 
-size_t	ft_size_d(void **pointer, size_t data_type)
+size_t	ft_size(void *pointer, size_t data_type)
 {
 	size_t	size;
 
@@ -38,19 +38,30 @@ size_t	ft_size_d(void **pointer, size_t data_type)
 	return (size / data_type);
 }
 
-size_t	ft_size(void *pointer, size_t data_type)
+size_t	ft_size_dc(char **double_a)
 {
 	size_t	size;
 
 	size = 0;
-	if (!pointer)
-		return (size);
-	while (*(char *)pointer)
+	while (*double_a)
 	{
 		size++;
-		pointer++;
+		double_a++;
 	}
-	return (size / data_type);
+	return(size);
+}
+
+size_t	ft_dict_size(t_dictionary **dict)
+{
+	size_t	size;
+
+	size = 0;
+	while (*dict)
+	{
+		dict++;
+		size++;
+	}
+	return (size);
 }
 
 void	*ft_calloc(size_t type, size_t size)

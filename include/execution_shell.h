@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_shell.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/07 16:34:17 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/09 21:28:41 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef	struct dictionary
 }	t_dictionary;
 
 size_t			ft_size(void *pointer, size_t data_type);
+size_t			ft_size_dc(char **double_a);
+size_t			ft_dict_size(t_dictionary **dict);
 void			*ft_calloc(size_t type, size_t size);
 char			**split(char *string, char divider);
 char			*ft_str_new(char *string);
@@ -30,5 +32,6 @@ void			execute_command(char *command, char **arguments, char **environment);
 int				contains_string(char **string_list, char *string);
 void			free_double(char **pointer);
 t_dictionary	**environment(char *operation, char **env_arg, t_dictionary **dict_env);
+char			**dict_to_list(t_dictionary **dict);
 char *find_key(char *str);
 #endif
