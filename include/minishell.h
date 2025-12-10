@@ -14,4 +14,6 @@
 # include <stdbool.h>
 # include <errno.h>
 # include <sys/wait.h>
+int count_pipes(char *str);
+void exec_loop(char *str, char *env[]);
 #endif
