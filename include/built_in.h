@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:39:29 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/07 15:02:10 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/14 18:01:39 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 void	echo(char **args);
 void	cd(char **args);
 void	pwd();
+void	export(char **args);
 
 #endif

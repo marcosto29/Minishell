@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:06:11 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/09 21:08:02 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/14 16:09:06 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	echo(char **args)
 
 	args_size = (int)ft_size_dc(args);
 	eol = 0;
-	counter = 1;
+	counter = 0;
 	if (args)
 	{
 		while (eol_checker(args[counter]) == 0)

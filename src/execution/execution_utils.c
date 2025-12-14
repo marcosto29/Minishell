@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/09 21:14:03 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/14 18:35:58 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,23 @@ void	*ft_calloc(size_t type, size_t size)
 	return ((void *)ptr);
 }
 
-void	string_split(char **splitted, char *to_split, char divider)
+void	**ft_realloc_d(void **ptr, size_t new_size)
+{
+	void	**new_ptr;
+	int		i;
+
+	new_ptr = malloc(new_size);
+	i = 0;
+	while (ptr[i])
+	{
+		new_ptr[i] = ptr[i];
+		i++;
+	}
+	new_ptr[i] = '\0';
+	return (new_ptr);
+}
+
+void	string_split(char **splitted, char *to_split, char divider, ...)
 {
 	int		divide_number;
 	char	*aux;

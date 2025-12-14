@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:18:01 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/09 21:47:17 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/14 18:08:12 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	initialize_env(t_dictionary ***env, char **env_arg)
 				ft_size(splitted_arg[1], sizeof(char)) + 1);
 		(*env)[i]->key = splitted_arg[0];
 		(*env)[i]->value = splitted_arg[1];
+		(*env)[i]->exported = 1;
 		i++;
 	}
 }
@@ -44,7 +45,7 @@ t_dictionary	**environment(char *operation,
 	if (!env)
 	{
 		initialize_env(&env, env_arg);
-		return (env);
+		return (NULL);
 	}
 	if (start_with(operation, "get") == 0)
 		return (env);
@@ -53,7 +54,8 @@ t_dictionary	**environment(char *operation,
 	return (NULL);
 }
 
-char	*find_key(char *str)
+//find the value of str key on a dictionary and change it if required
+char	*find_key(char *str, char *new_value)
 {
 	t_dictionary	**env;
 	int				i;
@@ -63,10 +65,17 @@ char	*find_key(char *str)
 	while (env[i])
 	{
 		if (start_with((char *)env[i]->key, str) == 0)
-			return ((char *)env[i]->value);
+		{
+			if (!new_value)
+				return ((char *)env[i]->value);
+			free(env[i]->value);
+			env[i]->value = ft_strdup(new_value);
+			return NULL;
+		}
 		i++;
 	}
-	return (ft_putendl_fd("key not found", 2), NULL);
+	//te lo pongo así de momento para que sea más visual de ver que no se ha encontrado la key
+	return (printf("%s key not found\n", str), NULL);
 }
 
 char	**dict_to_list(t_dictionary **dict)
