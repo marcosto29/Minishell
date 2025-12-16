@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:21:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/14 21:16:14 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/16 20:45:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ int main(int argc, char *argv[], char *env[])
 	// t_lexer *tmp = list;
 
 	// t_dictionary	**aux;
-	// t_dictionary	**new_aux;
+	// t_dictionary	**new_aux;1	
 	environment(NULL, env, NULL);
+	add_key_value("HOLA", "MUNDO");
 	// aux = environment("get", NULL, NULL);
 	// // printf("%s\n", find_key("PATH"));
 	// t_simple_cmds *cmd_1 = malloc(sizeof(t_simple_cmds));

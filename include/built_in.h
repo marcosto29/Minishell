@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:39:29 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/14 18:01:39 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:39:00 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@ void	echo(char **args);
 void	cd(char **args);
 void	pwd();
 void	export(char **args);
+void	env(char **args);
 
 #endif
