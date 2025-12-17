@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/16 19:53:36 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/17 20:40:23 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*search_bash_command(char *command)
 	char	*joined_path;
 	char	*joined_path2;
 
-	divided_path = split(find_key("PATH", NULL), ':', 1);
+	divided_path = split(find_key("PATH", NULL), ':', -1);
 	aux = divided_path;
 	while (*divided_path)
 	{
