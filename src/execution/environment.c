@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:18:01 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/16 21:15:09 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:28:08 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	initialize_env(t_dictionary ***env, char **env_arg)
 				ft_size(splitted_arg[1], sizeof(char)) + 1);
 		(*env)[i]->key = splitted_arg[0];
 		(*env)[i]->value = splitted_arg[1];
-		(*env)[i]->exported = 1;
 		i++;
 	}
 }
@@ -115,8 +114,31 @@ void	add_key_value(char *key, char *value)
 	env = (t_dictionary **)ft_realloc_d((void **)aux, ft_dict_size(aux) + 2);
 	new_key_value = ft_calloc(sizeof(t_dictionary), 1);
 	new_key_value->key = ft_strdup(key);
-	new_key_value->value = ft_strdup(value);
+	if (value)
+		new_key_value->value = ft_strdup(value);
+	else
+		new_key_value->value = ft_strdup("");
 	env[ft_dict_size(env)] = new_key_value;
 	env[ft_dict_size(env) + 1] = '\0';
 	environment("set", NULL, env);
+}
+
+// void	remove_key_value(char *key)
+// {
+// 	t_dictionary	**env;
+// 	t_dictionary	**aux;
+// }
+
+void	show_environment()
+{
+	t_dictionary	**env;
+	int				i;
+
+	env = environment("get", NULL, NULL);
+	i = 0;
+	while (env[i])
+	{
+		printf("%s=%s\n", (char *)env[i]->key, (char *)env[i]->value);
+		i++;
+	}
 }

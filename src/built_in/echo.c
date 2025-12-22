@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:06:11 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/14 16:09:06 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:29:31 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	eol_checker(char *arg)
 	return (0);
 }
 
-void	echo(char **args)
+int	echo(char **args)
 {
 	int	eol;
 	int	counter;
@@ -51,4 +51,5 @@ void	echo(char **args)
 	}
 	if (eol == 0)
 		printf("\n");
+	return (0);
 }

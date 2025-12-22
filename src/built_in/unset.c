@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 18:35:28 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/22 16:29:41 by matoledo         ###   ########.fr       */
+/*   Created: 2025/12/22 12:39:03 by matoledo          #+#    #+#             */
+/*   Updated: 2025/12/22 16:08:55 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	pwd()
-{
-	size_t	size;
-	char	*directory;
-	
-	size = 512;
-	directory = getcwd(NULL, size);
-	if (directory == NULL)
-		perror("Error");
-	printf("%s\n", directory);
-	free(directory);
-	return (0);
-}
+// int	unset(char **args)
+// {
+// 	int				i;
+
+// 	i = 0;
+// 	while (args[i])
+// 	{
+// 		remove_key_value(args[i]);
+// 		i++;
+// 	}
+// }

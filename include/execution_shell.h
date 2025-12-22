@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/16 19:53:04 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:13:30 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ typedef struct dictionary
 {
 	void	*key;
 	void	*value;
-	int		exported;
 }	t_dictionary;
 
 size_t			ft_size(void *pointer, size_t data_type);
@@ -31,7 +30,7 @@ char			*ft_str_new(char *string);
 void			ft_strlcopy(char *to_copy, char *copied);
 char			*ft_strcat(char *string1, char *string2);
 int				start_with(char	*string, char *find);
-void			execute_command(char *command, char **arguments);
+int				execute_command(char *command, char **arguments);
 int				contains_string(char **string_list, char *string);
 void			free_double(char **pointer);
 t_dictionary	**environment(char *operation, char **env_arg,
@@ -39,4 +38,6 @@ t_dictionary	**environment(char *operation, char **env_arg,
 char			**dict_to_list(t_dictionary **dict);
 char			*find_key(char *str, char *new_value);
 void			add_key_value(char *key, char *value);
+void			remove_key_value(char *key);
+void			show_environment();
 #endif

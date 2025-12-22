@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/16 21:18:14 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/22 15:41:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int	contains_string(char **string_list, char *string)
 {
-	while (*string_list)
+	int	i;
+
+	i = 0;
+	while (string_list[i])
 	{
-		if (start_with(*string_list, string) == 0)
+		if (start_with(string_list[i], string) == 0)
 			return (0);
-		string_list++;
+		i++;
 	}
 	return (1);
 }

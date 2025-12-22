@@ -6,44 +6,41 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/17 20:40:23 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:28:52 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	search_built_in_command(char *command, char **args)
+int	search_built_in_command(char *command, char **args)
 {
 	args += 1;
 	if (start_with(command, "echo") == 0)
-		echo(args);
+		return (echo(args));
 	if (start_with(command, "cd") == 0)
-		cd(args);
+		return (cd(args));
 	if (start_with(command, "pwd") == 0)
-		pwd();
+		return (pwd());
 	if (start_with(command, "export") == 0)
-		export(args);
+		return (export(args));
 	if (start_with(command, "unset") == 0)
 		printf("por desarrollar\n");
 	if (start_with(command, "env") == 0)
-		env(args);
+		return (env(args));
 	if (start_with(command, "exit") == 0)
 		printf("por desarrollar\n");
+	return (0);
 }
 
 //echo, cd, pwd, export, unset, env, exit
 int	execute_built_in_command(char *command, char **arguemnts)
 {
-	static char	**built_in_list;
+	char	**built_in_list;
 
-	if (!built_in_list)
-		built_in_list = (char *[]){"echo", "cd", "pwd", "export",
-			"unset", "env", "exit", NULL};
+	built_in_list = (char *[]){"echo", "cd", "pwd", "export",
+		"unset", "env", "exit", NULL};
 	if (contains_string(built_in_list, command) == 0)
-	{
-		search_built_in_command(command, arguemnts);
-		return (0);
-	}
+		return (search_built_in_command(command, arguemnts));
 	return (1);
 }
 
@@ -90,8 +87,9 @@ void	execute_bash_command(char *command, char **args)
 	wait(NULL);
 }
 
-void	execute_command(char *command, char **args)
+int	execute_command(char *command, char **args)
 {
 	if (execute_built_in_command(command, args) == 1)
 		execute_bash_command(command, args);
+	return (0);
 }
