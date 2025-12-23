@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/22 15:41:25 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/23 19:48:02 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ size_t	ft_size_dc(char **double_a)
 	return(size);
 }
 
-size_t	ft_dict_size(t_dictionary **dict)
+size_t	ft_dict_size(t_dictionary *dict)
 {
 	size_t	size;
 
 	size = 0;
-	while (*dict)
+	while (dict)
 	{
-		dict++;
+		dict = dict->next;
 		size++;
 	}
 	return (size);
@@ -216,6 +216,8 @@ char	*ft_strcat(char *string1, char *string2)
 
 int	start_with(char	*string, char *find)
 {
+	if (!string || !find)
+		return (1);
 	while (*find)
 	{
 		if (*string != *find)

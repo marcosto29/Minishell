@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/22 17:24:44 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/23 20:11:03 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,16 @@ void exec_loop(char *str)
     while (i < pipes)
     {
         list = fill_cmds(cmd_1, list);
-        if(ft_strncmp("<<", cmd_1->hd_file_name, 2) == 0)
-        {
-            printf("AQUI EJECUTA EL HEREDOC\n");
-        }
+        // if(ft_strncmp("<<", cmd_1->hd_file_name, 2) == 0)
+        // {
+        //     printf("AQUI EJECUTA EL HEREDOC\n");
+        // }
 	    exit_value = execute_command(cmd_1->str[0],cmd_1->str);
         if (exit_value == -1)
             break ;
         i++;
     }
     free_lexer(list);
-	free_parcer(cmd_1);
+	// free_parcer(cmd_1);
+    free_environment();
 }
