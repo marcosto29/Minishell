@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/24 19:01:19 by marvin           ###   ########.fr       */
+/*   Updated: 2025/12/29 13:36:09 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,20 @@ int get_pipe_position(t_lexer *start, t_simple_cmds *cmd)
             start = start->next;
         start = start->next;
     }
+    if (cmd->str)
+    {
+        int j = 0;
+        while (cmd->str[j])
+        {
+            free(cmd->str[j]);
+            j++;
+        }
+        free(cmd->str);
+        cmd->str = NULL;
+    }
     cmd->str = malloc(sizeof(char *) * (cnt + 1));
+    if (!cmd->str)
+        return (0);
     cmd->str[cnt] = NULL;
     return(cnt);
 }
@@ -42,13 +55,23 @@ char *redirection(t_lexer *start)
 void free_parcer(t_simple_cmds *list)
 {
 	t_simple_cmds	*tmp;
+	int				i;
 
 	while (list)
 	{
 		tmp = list;
 		list = list->next;
-		free(tmp->str);
-        free(tmp->hd_file_name);
+		if (tmp->str)
+		{
+			i = 0;
+			while (tmp->str[i])
+			{
+				free(tmp->str[i]);
+				i++;
+			}
+			free(tmp->str);
+		}
+		free(tmp->hd_file_name);
 		free(tmp);
 	}
 }

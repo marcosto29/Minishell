@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_parser_execution.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/23 20:11:03 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/29 13:38:45 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,16 @@ int count_pipes(char *str)
     return(count);
 }
 
-void exec_loop(char *str)
+void exec_loop(char *str, t_simple_cmds *cmd_1)
 {
     int pipes;
     int i;
     int exit_value;
     t_lexer *list;
+    t_lexer *list_head;
     
     list = handle_tokens(str);
-    t_simple_cmds *cmd_1 = malloc(sizeof(t_simple_cmds));
+    list_head = list;
     pipes = count_pipes(str) + 1;
     i = 0;
     while (i < pipes)
@@ -63,7 +64,6 @@ void exec_loop(char *str)
             break ;
         i++;
     }
-    free_lexer(list);
-	// free_parcer(cmd_1);
+    free_lexer(list_head);
     free_environment();
 }

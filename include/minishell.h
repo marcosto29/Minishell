@@ -16,5 +16,5 @@
 # include <sys/wait.h>
 # include <stdarg.h>
 int		count_pipes(char *str);
-void	exec_loop(char *str);
+void exec_loop(char *str, t_simple_cmds *cmd_1);
 #endif
