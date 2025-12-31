@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   loop_parser_execution.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/29 13:38:45 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/31 17:42:01 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "readline/readline.h"
 
 int count_pipes(char *str)
 {
@@ -40,7 +41,7 @@ int count_pipes(char *str)
     return(count);
 }
 
-void exec_loop(char *str, t_simple_cmds *cmd_1)
+int exec_loop(char *str)
 {
     int pipes;
     int i;
@@ -52,6 +53,7 @@ void exec_loop(char *str, t_simple_cmds *cmd_1)
     list_head = list;
     pipes = count_pipes(str) + 1;
     i = 0;
+    t_simple_cmds *cmd_1 = ft_calloc(sizeof(t_simple_cmds), 1);
     while (i < pipes)
     {
         list = fill_cmds(cmd_1, list);
@@ -65,5 +67,48 @@ void exec_loop(char *str, t_simple_cmds *cmd_1)
         i++;
     }
     free_lexer(list_head);
+    free_parcer(cmd_1);
+	return (exit_value);
+}
+
+void	add_list_node(t_node *history, void *value)
+{
+	t_node	*node;
+
+	node = ft_calloc(sizeof(t_node), 1);
+	node->value = value;
+	while (history->next)
+		history = history->next;
+	history->next = node;
+	node->previous = history;
+}
+
+void    free_list(t_node *list)
+{
+    t_node  *aux;
+
+    while (list)
+    {
+        aux = list->next;
+        free(list->value);
+        free(list);
+        list = aux;
+    }
+}
+
+void	minishell_loop()
+{
+	char			*line;
+	static t_node	*history;
+
+	history = ft_calloc(sizeof(t_node), 1);
+	while (1)
+	{
+		line = readline(NULL);
+		add_list_node(history, line);
+		if (exec_loop(line) == -1)
+			break;
+	}
     free_environment();
+    free_list(history);
 }

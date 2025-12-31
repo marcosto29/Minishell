@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/23 19:48:02 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/31 15:09:00 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ size_t	ft_size_dc(char **double_a)
 		size++;
 		double_a++;
 	}
-	return(size);
+	return (size);
 }
 
 size_t	ft_dict_size(t_dictionary *dict)
@@ -116,7 +116,7 @@ int	divides(char *aux, char divider, int amount)
 	}
 	else
 	{
-		while(*aux)
+		while (*aux)
 		{
 			divide_number++;
 			aux++;
@@ -155,6 +155,8 @@ char	**split(char *string, char divider, int amount)
 	char	**splitted_word;
 	char	*aux;
 
+	if (!string)
+		return (NULL);
 	divide_number = 1;
 	aux = string;
 	while (*aux && amount != 0)
@@ -230,8 +232,8 @@ int	start_with(char	*string, char *find)
 
 void	free_double(char **pointer)
 {
-	char **aux;
-	
+	char	**aux;
+
 	aux = pointer;
 	while (*aux)
 	{

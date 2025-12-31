@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/29 13:36:09 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/30 14:02:09 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,26 +54,19 @@ char *redirection(t_lexer *start)
 }
 void free_parcer(t_simple_cmds *list)
 {
-	t_simple_cmds	*tmp;
 	int				i;
-
-	while (list)
+	if (list->str)
 	{
-		tmp = list;
-		list = list->next;
-		if (tmp->str)
+		i = 0;
+		while (list->str[i])
 		{
-			i = 0;
-			while (tmp->str[i])
-			{
-				free(tmp->str[i]);
-				i++;
-			}
-			free(tmp->str);
-		}
-		free(tmp->hd_file_name);
-		free(tmp);
-	}
+            free(list->str[i]);
+            i++;
+        }
+        free(list->str);
+    }
+    free(list->hd_file_name);
+    free(list);
 }
 t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start)
 {

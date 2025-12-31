@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/23 20:52:18 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/31 15:12:26 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	execute_built_in_command(char *command, char **args)
 	if (start_with(command, "export") == 0)
 		return (export(args));
 	if (start_with(command, "unset") == 0)
-		return(unset(args));
+		return (unset(args));
 	if (start_with(command, "env") == 0)
 		return (env(args));
 	if (start_with(command, "exit") == 0)
-		return (own_exit(args));
+		return (-1);
 	return (0);
 }
 
@@ -49,7 +49,11 @@ char	*search_bash_command(char *command)
 	char	*joined_path;
 	char	*joined_path2;
 
+	if (access(command, F_OK) == 0)
+		return (command);
 	divided_path = split(find_key("PATH"), ':', -1);
+	if (!divided_path)
+		return (NULL);
 	aux = divided_path;
 	while (*divided_path)
 	{
@@ -67,31 +71,46 @@ char	*search_bash_command(char *command)
 	return (joined_path);
 }
 
+void	not_command(char *command)
+{
+	if (ft_strchr(command, '/') != NULL)
+		printf("%s: No such file or directory\n", command);
+	else
+		printf("%s: command not found\n", command);
+}
+
+// == 0 para hacer ejecución con padre != 0 para hacer ejecución con hijo
+//(normalmente uso esta cuano necesito debuggear)
 int	execute_bash_command(char *command, char **args)
 {
 	char	*command_path;
+	char	**list_dictionary;
 	pid_t	p;
 
 	p = fork();
-	// == 0 para hacer ejecución con padre != 0 para hacer ejecución con hijo (normalmente uso esta cuano necesito debuggear)
 	if (p == 0)
 	{
 		command_path = search_bash_command(command);
 		if (!command_path)
-			perror(command);
-		if (execve(command_path, args,
-				dict_to_list(environment("get", NULL))) == -1)
-			perror(command);
-		return (-1);
+		{
+			not_command(command);
+			exit (0);
+		}
+		list_dictionary = dict_to_list(environment("get", NULL));
+		execve(command_path, args, list_dictionary);
+		perror(command);
+		free_double(list_dictionary);
+		free(command_path);
+		exit (1);
 	}
-	wait(NULL);
+	waitpid(p, NULL, 0);
 	return (0);
 }
 
 int	execute_command(char *command, char **args)
 {
 	if (is_built_in_command(command) == 0)
-		return (execute_built_in_command(command, args));		
+		return (execute_built_in_command(command, args));
 	else
 		return (execute_bash_command(command, args));
 	return (0);

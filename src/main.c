@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:21:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/29 13:31:09 by aosset-o         ###   ########.fr       */
+/*   Updated: 2025/12/31 14:38:42 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 int main(int argc, char *argv[], char *env[])
 {
-	if(!argc || !argv[1])
-		return(1);
+	// if(!argc || !argv[1])
+	// 	return(1);
 	// t_lexer *list = handle_tokens(argv[1]);
 	// t_lexer *tmp = list;
 
+	(void)argc;
+	(void)argv;
 	// t_dictionary	**new_aux;1
-	t_simple_cmds *cmd_1 = malloc(sizeof(t_simple_cmds));
 	environment(NULL, env);
 	// // // printf("%s\n", find_key("PATH"));
 	// // t_simple_cmds *cmd_1 = malloc(sizeof(t_simple_cmds));
@@ -28,7 +29,6 @@ int main(int argc, char *argv[], char *env[])
 	// // execute_command(cmd_1->str[0],cmd_1->str, env);
 	// // free_lexer(list);
 	// // free_parcer(cmd_1);
-	exec_loop(argv[1], cmd_1);
-	free_parcer(cmd_1);
+	minishell_loop();
     return 0;
 }

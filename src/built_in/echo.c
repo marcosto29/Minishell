@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:06:11 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/23 20:38:02 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/31 14:08:36 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	echo(char **args)
 			counter++;
 		if (counter >= 1)
 			eol = 1;
-		while(args[counter])
+		while (args[counter])
 		{
 			printf("%s", args[counter]);
-			if(counter < args_size - 1)
+			if (counter < args_size - 1)
 				printf(" ");
 			counter++;
 		}

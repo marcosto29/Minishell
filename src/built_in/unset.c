@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 12:39:03 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/23 20:45:06 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/31 14:08:43 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int	unset(char **args)
 		remove_key_value(args[i]);
 		i++;
 	}
-	show_environment();
 	return (0);
 }

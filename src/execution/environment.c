@@ -6,13 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:18:01 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/23 20:46:48 by matoledo         ###   ########.fr       */
+/*   Updated: 2025/12/31 14:33:24 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//////////////////////////NEW APPROACH WITH CONNECTED NODES/////////////////////////////
 
 t_dictionary	*initialize_env(char **env_arg)
 {
@@ -61,7 +59,7 @@ t_dictionary	*environment(char *operation,
 	return (NULL);
 }
 
-void	show_environment()
+void	show_environment(void)
 {
 	t_dictionary	*env;
 
@@ -114,7 +112,6 @@ void	add_key_value(char *key, char *value)
 	t_dictionary	*env;
 	t_dictionary	*new_key_value;
 
-	//if the key is found the value needs to be modifiy not add a whole new tuple
 	if (find_key(key))
 	{
 		modify_key_value(key, value);
@@ -157,31 +154,29 @@ void	remove_key_value(char	*key)
 char	**dict_to_list(t_dictionary *dict)
 {
 	char			**list;
+	char			*aux;
 	int				counter;
 
 	counter = 0;
-	list = ft_calloc(sizeof(char *), ft_dict_size(dict));
+	list = ft_calloc(sizeof(char *), ft_dict_size(dict) + 1);
 	while (dict)
 	{
 		if (dict->key)
 		{
-			list[counter] = ft_calloc(sizeof(char), ft_size(dict->key,
-						sizeof(char)) + ft_size(dict->value,
-						sizeof(char)) + 2);
-			list[counter] = ft_strjoin(ft_strdup((char *)dict->key), "=");
+			aux = ft_strjoin((char *)dict->key, "=");
 			if (dict->value)
-				list[counter] = ft_strjoin(list[counter],
-						ft_strdup((char *)dict->value));
+				list[counter] = ft_strjoin(aux, (char *)dict->value);
 			else
-				list[counter] = ft_strjoin(list[counter], ft_strdup(""));
+				list[counter] = ft_strjoin(aux, "");
 			counter++;
+			free(aux);
 		}
 		dict = dict->next;
 	}
 	return (list);
 }
 
-void	free_environment()
+void	free_environment(void)
 {
 	t_dictionary	*env;
 	t_dictionary	*aux;

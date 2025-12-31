@@ -26,7 +26,7 @@ SRC = src/main.c\
 src/lexer/lexer.c src/lexer/lexer_utils.c\
 src/parser/parser.c\
 src/execution/execution_utils.c src/execution/environment.c src/execution/command.c\
-src/built_in/cd.c src/built_in/echo.c src/built_in/pwd.c src/built_in/export.c src/built_in/env.c src/built_in/unset.c src/built_in/exit.c\
+src/built_in/cd.c src/built_in/echo.c src/built_in/pwd.c src/built_in/export.c src/built_in/env.c src/built_in/unset.c\
 src/loop_parser_execution.c
 
 OBJ = $(SRC:.c=.o)
@@ -36,7 +36,7 @@ HEADER = includes/minishell.h
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_PATH) 
+	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_PATH) -L/usr/local/lib -I/usr/local/include -lreadline
 	@echo "$(NAME): $(GREEN)object files were created$(RESET)"
 	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 %.o: %.c
