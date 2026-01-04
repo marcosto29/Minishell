@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/30 14:02:09 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/04 15:12:02 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int get_pipe_position(t_lexer *start, t_simple_cmds *cmd)
     {
         if (start->token == 0 && start->str)
             cnt++;
-        else if (is_operator(start->token) && start->next)
+        //lo anterior de is_operator fallaba porque como ya se había transformado el caracter le metíamos el GREAT y la comparativa se hacía mal
+        //siempre devolvía 0 y nunca hacía el extra jump, lo dejo así para que cualquier operator que detecte lo salte
+        else
             start = start->next;
         start = start->next;
     }
@@ -40,6 +42,7 @@ int get_pipe_position(t_lexer *start, t_simple_cmds *cmd)
     cmd->str[cnt] = NULL;
     return(cnt);
 }
+
 char *redirection(t_lexer *start)
 {
     if(start->token == 2)
@@ -72,16 +75,23 @@ t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start)
 {
     int pos;
     int i;
+    int j;
     
     pos = get_pipe_position(start, cmd);
     i = -1;
+    j = 0;
     cmd->num_redirections = 0;
     if(pos > 0)
     {
         while ((i++ < pos) && start)
         {
             if (start->token == 0 && start->str)
-                cmd->str[i] = ft_strdup(start->str);
+            {
+                //aunque con esto la norminette ya no tire hay que hacer aquí un int j++ a parte del contador que hay en el propio while, 
+                //porque si no pasa la siguiente situación ls > hola -l, ls guay lo añade en el 0, i++, salta el operator y el hola, -l guay lo mete pero en el 2 porque antes tmb se ha hecho un salto
+                cmd->str[j] = ft_strdup(start->str);
+                j++;
+            }
             else if(start->next && redirection(start))
             {
                 cmd->num_redirections++;
@@ -91,6 +101,8 @@ t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start)
             start = start->next;
         }
     }
+    //aquí haciendo ls > hola | env por alguna razón el list no se va al siguiente argumento sino que se queda en el operator >
+    //intuyo que será por como he gestionado ahora el bucle con pos
     if (start && start->token == PIPE)
         return (start->next);
     return (start); 

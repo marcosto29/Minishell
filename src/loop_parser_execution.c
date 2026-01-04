@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/31 17:42:01 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/04 15:14:21 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,38 @@ int count_pipes(char *str)
     return(count);
 }
 
+// int	*communication(t_lexer *lexer)
+// {
+
+// }
+
 int exec_loop(char *str)
 {
-    int pipes;
-    int i;
-    int exit_value;
-    t_lexer *list;
-    t_lexer *list_head;
-    
+    int		pipes;
+    int		i;
+    int		exit_value;
+    t_lexer	*list;
+    t_lexer	*list_head;
+	int		pipefd[2];
+	int		*flux;
+
     list = handle_tokens(str);
     list_head = list;
     pipes = count_pipes(str) + 1;
     i = 0;
     t_simple_cmds *cmd_1 = ft_calloc(sizeof(t_simple_cmds), 1);
+	flux = ft_calloc(sizeof(int), 2);
     while (i < pipes)
     {
+		if (pipe(pipefd) == -1)
+               perror("pipe");
         list = fill_cmds(cmd_1, list);
+		// flux = communication(cmd_1);
         // if(ft_strncmp("<<", cmd_1->hd_file_name, 2) == 0)
         // {
         //     printf("AQUI EJECUTA EL HEREDOC\n");
         // }
-	    exit_value = execute_command(cmd_1->str[0],cmd_1->str);
+	    exit_value = execute_command(cmd_1->str[0], cmd_1->str, flux[0], flux[1]);
         if (exit_value == -1)
             break ;
         i++;

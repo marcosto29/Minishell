@@ -6,13 +6,13 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 21:07:34 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/31 15:43:09 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/01 15:02:20 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	change_directory()
+void	change_directory(void)
 {
 	char	*new_pwd;
 

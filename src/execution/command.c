@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/31 15:12:26 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/04 13:56:15 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,14 @@ int	execute_bash_command(char *command, char **args)
 		free(command_path);
 		exit (1);
 	}
-	waitpid(p, NULL, 0);
+	wait(NULL);
 	return (0);
 }
 
-int	execute_command(char *command, char **args)
+int	execute_command(char *command, char **args, int fdi, int fdo)
 {
+	(void)fdi;
+	(void)fdo;
 	if (is_built_in_command(command) == 0)
 		return (execute_built_in_command(command, args));
 	else

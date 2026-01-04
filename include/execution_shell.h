@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/31 14:08:01 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/04 13:06:04 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ char			*ft_str_new(char *string);
 void			ft_strlcopy(char *to_copy, char *copied);
 char			*ft_strcat(char *string1, char *string2);
 int				start_with(char	*string, char *find);
-int				execute_command(char *command, char **arguments);
+int				execute_command(char *command, char **arguments,
+								int fdi, int fdo);
 int				contains_string(char **string_list, char *string);
 void			free_double(char **pointer);
 t_dictionary	*environment(char *operation, char **env_arg);
