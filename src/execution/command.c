@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/04 13:56:15 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:30:53 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	not_command(char *command)
 
 // == 0 para hacer ejecución con padre != 0 para hacer ejecución con hijo
 //(normalmente uso esta cuano necesito debuggear)
-int	execute_bash_command(char *command, char **args)
+int	execute_bash_command(char *command, char **args, int fdi, int fdo)
 {
 	char	*command_path;
 	char	**list_dictionary;
@@ -97,6 +97,8 @@ int	execute_bash_command(char *command, char **args)
 			exit (0);
 		}
 		list_dictionary = dict_to_list(environment("get", NULL));
+		dup2(fdo, 1);
+		dup2(fdi, 0);
 		execve(command_path, args, list_dictionary);
 		perror(command);
 		free_double(list_dictionary);
@@ -109,11 +111,9 @@ int	execute_bash_command(char *command, char **args)
 
 int	execute_command(char *command, char **args, int fdi, int fdo)
 {
-	(void)fdi;
-	(void)fdo;
 	if (is_built_in_command(command) == 0)
 		return (execute_built_in_command(command, args));
 	else
-		return (execute_bash_command(command, args));
+		return (execute_bash_command(command, args, fdi, fdo));
 	return (0);
 }
