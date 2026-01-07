@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_shell.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/05 17:10:10 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:13:37 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,6 @@ void			modify_key_value(char *key, char *value);
 void			show_environment();
 void			free_environment();
 void			minishell_loop();
+int	is_built_in_command(char *command);
+int	execute_built_in_command(char *command, char **args);
 #endif

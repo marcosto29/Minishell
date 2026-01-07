@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/04 15:12:02 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:04:15 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,7 @@ int get_pipe_position(t_lexer *start, t_simple_cmds *cmd)
         start = start->next;
     }
     if (cmd->str)
-    {
-        int j = 0;
-        while (cmd->str[j])
-        {
-            free(cmd->str[j]);
-            j++;
-        }
-        free(cmd->str);
-        cmd->str = NULL;
-    }
+        free_double(cmd->str);
     cmd->str = malloc(sizeof(char *) * (cnt + 1));
     if (!cmd->str)
         return (0);
