@@ -24,5 +24,5 @@ typedef struct node
 }	t_node;
 
 int	count_pipes(char *str);
-int	exec_loop(char *str);
+int	exec_loop(char *str, t_simple_cmds *cmd_1);
 #endif
