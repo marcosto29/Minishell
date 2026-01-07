@@ -6,39 +6,11 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/07 16:14:08 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:18:05 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	count_pipes(char *str)
-{
-	int	count;
-	int	i;
-
-	count = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == 34)
-		{
-			i++;
-			while (str[i] != 34)
-				i++;
-		}
-		if (str[i] == 39)
-		{
-			i++;
-			while (str[i] != 39)
-				i++;
-		}
-		if (str[i] == 124)
-			count++;
-		i++;
-	}
-	return (count);
-}
 
 int	heredoc(char *break_word)
 {
