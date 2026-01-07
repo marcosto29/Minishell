@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/07 16:18:05 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:58:57 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,18 @@ int	out_pipe(char *operator, int fdo)
 	return (out);
 }
 
-int	*communication(t_simple_cmds *command, int fdi, int fdo)
+int	*communication(t_simple_cmds *cmd, int fdi, int fdo)
 {
 	int		*communication_flux;
-	if(command->num_redirections == 0)
+	
+	if(cmd->num_redirections == 0)
 		communication_flux = ft_calloc(sizeof(int), 2);
-	while (command->num_redirections > 0)
+	while (cmd->num_redirections > 0)
 	{
 		communication_flux = ft_calloc(sizeof(int), 2);
-		communication_flux[0] = in_pipe(command->hd_file_name, fdi);
-		communication_flux[1] = out_pipe(command->hd_file_name, fdo);
-		command->num_redirections--;
+		communication_flux[0] = in_pipe(cmd->hd_file_name[cmd->num_redirections - 1], fdi);
+		communication_flux[1] = out_pipe(cmd->hd_file_name[cmd->num_redirections - 1], fdo);
+		cmd->num_redirections--;
 	}
 	return (communication_flux);
 }
@@ -100,6 +101,7 @@ int	exec_loop(char *str, t_simple_cmds	*cmd_1)
 	list = handle_tokens(str);
 	i = 0;
 	cmd_1->tokens = list;
+	redirections_malloc(cmd_1);
 	cmd_1->num_pipes = count_pipes(str) + 1;
 	exit_value =0;
 	while (i < cmd_1->num_pipes && exit_value != -1)

@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:21:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/07 11:46:56 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/07 18:00:36 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ int main(int argc, char *argv[], char *env[])
 	// t_dictionary	**new_aux;1
 	environment(NULL, env);
 	// printf("%s\n", find_key("PATH"));
-	// t_simple_cmds *cmd_1 = malloc(sizeof(t_simple_cmds));
+	
 	// tmp = fill_cmds(cmd_1, tmp);
 	// execute_command(cmd_1->str[0],cmd_1->str, env);
-	// free_lexer(list);
-	// free_parcer(cmd_1);
-	//exec_loop(argv[1]);
-	minishell_loop();
+	t_simple_cmds *cmd_1 = ft_calloc(sizeof(t_simple_cmds), 1);
+	exec_loop(argv[1], cmd_1);
+	free_parcer(cmd_1);
+	free_environment();
+	// minishell_loop();
     return 0;
 }
