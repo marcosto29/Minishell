@@ -6,13 +6,13 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/07 18:30:13 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/07 19:40:39 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int get_pipe_position(t_lexer *start, t_simple_cmds *cmd)
+void str_alloc(t_lexer *start, t_simple_cmds *cmd)
 {
     int cnt = 0;
     while (start && start->token != PIPE)
@@ -29,9 +29,8 @@ int get_pipe_position(t_lexer *start, t_simple_cmds *cmd)
         free_double(cmd->str);
     cmd->str = ft_calloc((cnt + 1), sizeof(char *));
     if (!cmd->str)
-        return (0);
+        return ;
     cmd->str[cnt] = NULL;
-    return(cnt);
 }
 
 char *redirection(t_lexer *start)
@@ -54,41 +53,39 @@ void free_parcer(t_simple_cmds *list)
 		free_double(list->hd_file_name);
     free(list);
 }
-void fill_redirections(t_simple_cmds *cmd, t_lexer *start, int *idx)
+void fill_redirections(t_simple_cmds *cmd, t_lexer *start, int *i)
 {
     if (!start || !start->next)
         return;
-    if (redirection(start) && *idx < cmd->num_redirections)
+    if (redirection(start) && *i < cmd->num_redirections)
     {
-        cmd->hd_file_name[*idx] = ft_strjoin(redirection(start), start->next->str);
-        (*idx)++;
+        cmd->hd_file_name[*i] = ft_strjoin(redirection(start), start->next->str);
+        (*i)++;
     }
-    start = start->next;
 }
 t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start)
 {
-    int pos;
-    int i;
     int j;
     int k;
+    t_lexer *tmp;
     
-    pos = get_pipe_position(start, cmd);
-    i = -1;
+    tmp = start;
+    str_alloc(tmp, cmd);
     j = 0;
     k = 0;
-    if(pos > 0)
+    while (start && start->token != PIPE)
     {
-        while ((i++ < pos) && start)
+        if (start->token == 0 && start->str)
         {
-            if (start->token == 0 && start->str)
-            {
-                cmd->str[j] = ft_strdup(start->str);
-                j++;
-            }
-            else if (start->next && redirection(start))
-                fill_redirections(cmd, start, &k);
+            cmd->str[j] = ft_strdup(start->str);
+            j++;
+        }
+        else if (start->token > 1 && start->token <= 5 && start->next)
+        {
+            fill_redirections(cmd, start, &k);
             start = start->next;
         }
+        start = start->next;
     }
     if (start && start->token == PIPE)
         return (start->next);
