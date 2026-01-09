@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/07 19:40:39 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:51:23 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start)
     {
         if (start->token == 0 && start->str)
         {
-            cmd->str[j] = ft_strdup(start->str);
+            cmd->str[j] = expander(start->str);
             j++;
         }
         else if (start->token > 1 && start->token <= 5 && start->next)

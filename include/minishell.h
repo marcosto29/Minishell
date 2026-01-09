@@ -3,6 +3,7 @@
 #include "libft/libft.h"
 #include "lexer.h"
 #include "parser.h"
+#include "expander.h"
 #include "execution_shell.h"
 #include "built_in.h"
 # include <stdio.h>

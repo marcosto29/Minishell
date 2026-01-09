@@ -27,7 +27,8 @@ src/lexer/lexer.c src/lexer/lexer_utils.c\
 src/parser/parser.c src/parser/parser_utils.c\
 src/execution/execution_utils.c src/execution/environment.c src/execution/command.c src/execution/dictionary_utils.c src/execution/execute_built_in.c\
 src/built_in/cd.c src/built_in/echo.c src/built_in/pwd.c src/built_in/export.c src/built_in/env.c src/built_in/unset.c\
-src/loop_parser_execution.c src/minishell_loop.c
+src/loop_parser_execution.c src/minishell_loop.c\
+src/expander/expander.c src/expander/expander_utils.c
 
 OBJ = $(SRC:.c=.o)
 

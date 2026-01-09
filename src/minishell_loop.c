@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/07 15:29:57 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:33:55 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	minishell_loop(void)
 	history = ft_calloc(sizeof(t_node), 1);
 	while (1)
 	{
-		line = readline(NULL);
+		line = readline(">");
 		add_list_node(history, line);
 		cmd_1 = ft_calloc(sizeof(t_simple_cmds), 1);
 		if (exec_loop(line, cmd_1) == -1)
