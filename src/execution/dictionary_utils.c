@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dictionary_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:22:35 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/07 16:06:12 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/08 17:54:22 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*find_key(char *str)
 	}
 	return (NULL);
 }
+
 void	add_key_value(char *key, char *value)
 {
 	t_dictionary	*env;

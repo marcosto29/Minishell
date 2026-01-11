@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_parser_execution.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/07 16:58:57 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/11 14:01:18 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	heredoc(char *break_word)
 		perror("pipe");
 	while (1)
 	{
-		line = readline(NULL);
-		if (start_with(line, break_word) == 0)
+		line = readline(">");
+		if (ft_strncmp(line, break_word, ft_size(break_word, sizeof(char)) + 1) == 0)
 		{
 			free(line);
 			break ;

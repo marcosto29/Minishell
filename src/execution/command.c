@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/07 16:11:32 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/11 13:24:34 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int is_file(const char *path)
+{
+    struct stat path_stat;
+    stat(path, &path_stat);
+	if(S_ISREG(path_stat.st_mode))
+		return (0);
+    return (1);
+}
 
 char	*search_bash_command(char *command)
 {
@@ -31,7 +40,7 @@ char	*search_bash_command(char *command)
 		joined_path = ft_strcat(joined_path2, command);
 		free(joined_path2);
 		joined_path2 = NULL;
-		if (access(joined_path, F_OK) == 0)
+		if (access(joined_path, X_OK) == 0 && is_file(joined_path) == 0)
 			break ;
 		free(joined_path);
 		joined_path = NULL;
@@ -39,14 +48,6 @@ char	*search_bash_command(char *command)
 	}
 	free_double(aux);
 	return (joined_path);
-}
-
-void	not_command(char *command)
-{
-	if (ft_strchr(command, '/') != NULL)
-		printf("%s: No such file or directory\n", command);
-	else
-		printf("%s: command not found\n", command);
 }
 
 // == 0 para hacer ejecución con padre != 0 para hacer ejecución con hijo
@@ -62,16 +63,16 @@ int	execute_bash_command(char *command, char **args, int fdi, int fdo)
 	{
 		command_path = search_bash_command(command);
 		if (!command_path)
+			printf("%s: command not found\n", command);
+		else
 		{
-			not_command(command);
-			exit (0);
+			list_dictionary = dict_to_list(environment("get", NULL));
+			dup2(fdo, 1);
+			dup2(fdi, 0);
+			execve(command_path, args, list_dictionary);
+			perror(command);
+			free_double(list_dictionary);
 		}
-		list_dictionary = dict_to_list(environment("get", NULL));
-		dup2(fdo, 1);
-		dup2(fdi, 0);
-		execve(command_path, args, list_dictionary);
-		perror(command);
-		free_double(list_dictionary);
 		free(command_path);
 		exit (1);
 	}

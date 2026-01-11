@@ -16,6 +16,8 @@
 # include <errno.h>
 # include <sys/wait.h>
 # include <stdarg.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 typedef struct node
 {

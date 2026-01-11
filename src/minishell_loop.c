@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/09 14:33:55 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/11 13:49:10 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,23 @@ void	minishell_loop(void)
 	char			*line;
 	t_simple_cmds	*cmd_1;
 	static t_node	*history;
+	char			*line_char;
 
 	history = ft_calloc(sizeof(t_node), 1);
 	while (1)
 	{
-		line = readline(">");
+		line_char = ft_strjoin(find_key("PWD"), ": ");
+		line = readline(line_char);
 		add_list_node(history, line);
 		cmd_1 = ft_calloc(sizeof(t_simple_cmds), 1);
 		if (exec_loop(line, cmd_1) == -1)
 		{
 			free_parcer(cmd_1);
+			free(line_char);
 			break ;
 		}
 		free_parcer(cmd_1);
+		free(line_char);
 	}
 	free_environment();
 	free_list(history);
