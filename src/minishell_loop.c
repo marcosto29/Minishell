@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/12 19:35:38 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/12 19:38:43 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,41 +23,32 @@ void	free_list(t_node *list)
 		list = aux;
 	}
 }
-void	add_list_node(t_node *history, void *value)
-{
-	t_node	*node;
-
-	node = ft_calloc(sizeof(t_node), 1);
-	node->value = value;
-	while (history->next)
-		history = history->next;
-	history->next = node;
-	node->previous = history;
-}
 
 void	minishell_loop(void)
 {
 	char			*line;
 	t_simple_cmds	*cmd_1;
-	static t_node	*history;
 	char			*line_char;
+	int				result;
 
-	history = ft_calloc(sizeof(t_node), 1);
+	result = 0;
 	while (1)
 	{
 		line_char = ft_strjoin(find_key("PWD"), ": ");
 		line = readline(line_char);
-		add_list_node(history, line);
-		cmd_1 = ft_calloc(sizeof(t_simple_cmds), 1);
-		if (exec_loop(line, cmd_1) == -1)
+		rl_on_new_line();
+		if (line && *line)
 		{
+			add_history(line);
+			cmd_1 = ft_calloc(sizeof(t_simple_cmds), 1);
+			result = exec_loop(line, cmd_1);
 			free_parcer(cmd_1);
-			free(line_char);
-			break ;
 		}
-		free_parcer(cmd_1);
 		free(line_char);
+		free(line);
+		if (result == -1)
+			break ;
 	}
 	free_environment();
-	free_list(history);
+	rl_clear_history();
 }
