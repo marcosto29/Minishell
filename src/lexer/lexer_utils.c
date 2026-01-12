@@ -22,7 +22,6 @@ int	handle_quotes(int i, char *str, char del)
 		j++;
 		while (str[i + j] != del && str[i + j])
 			j++;
-		j++;
 	}
 	return (j);
 }

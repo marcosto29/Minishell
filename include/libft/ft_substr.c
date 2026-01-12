@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 12:50:50 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/07 16:29:36 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/12 19:19:17 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 
 	i = 0;
-	str = NULL;
 	if (start > ft_strlen(s))
 	{
 		str = malloc(1 * sizeof(char));
