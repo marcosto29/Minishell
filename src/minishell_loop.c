@@ -6,11 +6,12 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/12 19:38:43 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/13 20:01:28 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 void	free_list(t_node *list)
 {
 	t_node	*aux;

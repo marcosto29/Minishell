@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:22:35 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/08 17:54:22 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/13 20:02:42 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	modify_key_value(char *key, char *value)
 		env = env->next;
 	}
 }
+
 //Find the value of a Key on the dictionary
 char	*find_key(char *str)
 {

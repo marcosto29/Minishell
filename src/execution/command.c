@@ -6,19 +6,20 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/12 20:07:25 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/13 20:03:58 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int is_file(const char *path)
+int	is_file(const char *path)
 {
-    struct stat path_stat;
-    stat(path, &path_stat);
-	if(S_ISREG(path_stat.st_mode))
+	struct stat	path_stat;
+
+	stat(path, &path_stat);
+	if (S_ISREG(path_stat.st_mode))
 		return (0);
-    return (1);
+	return (1);
 }
 
 char	*search_bash_command(char *command)

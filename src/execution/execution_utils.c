@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/13 16:36:02 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/13 20:02:13 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	contains_string(char **string_list, char *string)
 	i = 0;
 	while (string_list[i])
 	{
-		if (ft_strncmp(string_list[i], string, ft_size(string_list[i], sizeof(char)) + 1) == 0)
+		if (ft_strncmp(string_list[i], string,
+				ft_size(string_list[i], sizeof(char)) + 1) == 0)
 			return (0);
 		i++;
 	}
