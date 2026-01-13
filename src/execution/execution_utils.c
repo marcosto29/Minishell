@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/11 11:52:07 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:36:02 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,6 @@ size_t	ft_dict_size(t_dictionary *dict)
 		size++;
 	}
 	return (size);
-}
-
-void	*ft_calloc(size_t type, size_t size)
-{
-	char	*ptr;
-	size_t	counter;
-
-	counter = 0;
-	ptr = malloc(type * size);
-	if (!ptr)
-		return (NULL);
-	while (counter < type * size)
-	{
-		ptr[counter] = '\0';
-		counter++;
-	}
-	return ((void *)ptr);
 }
 
 void	**ft_realloc_d(void **ptr, size_t new_size)

@@ -6,19 +6,25 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 11:30:34 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/04/12 12:48:55 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:36:11 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t type, size_t size)
 {
 	char	*ptr;
+	size_t	counter;
 
-	ptr = (char *)malloc(nmemb * size);
-	if (ptr == NULL)
-		return (ptr);
-	ft_bzero(ptr, nmemb * size);
+	counter = 0;
+	ptr = malloc(type * size);
+	if (!ptr)
+		return (NULL);
+	while (counter < type * size)
+	{
+		ptr[counter] = '\0';
+		counter++;
+	}
 	return ((void *)ptr);
 }
