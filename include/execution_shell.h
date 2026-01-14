@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/07 16:13:37 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/14 12:29:34 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				start_with(char	*string, char *find);
 int				execute_command(char *command, char **arguments,
 								int fdi, int fdo);
 int				contains_string(char **string_list, char *string);
-void			free_double(char **pointer);
+void			free_double(char ***pointer);
 t_dictionary	*environment(char *operation, char **env_arg);
 char			**dict_to_list(t_dictionary *dict);
 char			*find_key(char *str);
