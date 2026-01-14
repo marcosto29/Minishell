@@ -64,7 +64,6 @@ int read_word(int i, char *str, t_lexer **lexer)
             break;
         j++;
     }
-    //printf("--str = %s, --i = %i, --j = %d\n", str, i, j);
     aux = ft_substr(str, i, j);
     if (j == 0)
     {

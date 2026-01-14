@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/13 20:02:13 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/14 12:07:41 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,8 @@ void	free_double(char **pointer)
 {
 	char	**aux;
 
+	if(!pointer || !*pointer)
+		return;
 	aux = pointer;
 	while (*aux)
 	{

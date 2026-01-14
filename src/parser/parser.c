@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/09 14:51:23 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/14 11:29:46 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void fill_redirections(t_simple_cmds *cmd, t_lexer *start, int *i)
         return;
     if (redirection(start) && *i < cmd->num_redirections)
     {
-        cmd->hd_file_name[*i] = ft_strjoin(redirection(start), start->next->str);
+        if(start->next->str)
+            cmd->hd_file_name[*i] = ft_strjoin(redirection(start), start->next->str);
+        else
+            cmd->str[*i] = ft_strdup(redirection(start));
         (*i)++;
     }
 }
