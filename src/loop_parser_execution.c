@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_parser_execution.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/13 20:01:11 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/16 16:39:16 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	heredoc(char *break_w)
 		perror("pipe");
 		return (-1);
 	}
+	g_global.in_heredoc = 1;
 	while (1)
 	{
 		line = readline(">");
@@ -35,6 +36,7 @@ int	heredoc(char *break_w)
 		write(com_pipe[1], "\n", 1);
 		free(line);
 	}
+	g_global.in_heredoc = 0;
 	close(com_pipe[1]);
 	return (com_pipe[0]);
 }

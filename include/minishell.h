@@ -18,6 +18,7 @@
 # include <stdarg.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <signal.h> 
 
 typedef struct node
 {
@@ -28,4 +29,11 @@ typedef struct node
 
 int	count_pipes(char *str);
 int	exec_loop(char *str, t_simple_cmds *cmd_1);
+typedef struct s_global
+{
+	int	in_cmd;
+	int	in_heredoc;
+}	t_global;
+extern t_global	g_global;
+void	init_signals(void);
 #endif

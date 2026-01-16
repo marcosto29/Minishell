@@ -6,11 +6,34 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:19:51 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/07 17:59:43 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:32:17 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void str_alloc(t_lexer *start, t_simple_cmds *cmd)
+{
+    int cnt = 0;
+    int red_cnt = 0;
+    t_lexer *tmp;
+    
+    tmp = start;
+    while (tmp && tmp->token != PIPE)
+    {
+        if (tmp->token == 0 && tmp->str)
+            cnt++;
+        else if (tmp->token > 1 && tmp->token <= 5)
+            red_cnt++;
+        tmp = tmp->next;
+    }
+    if (cmd->str)
+        free_double(&cmd->str);
+    cmd->str = ft_calloc((cnt + red_cnt + 1), sizeof(char *));
+    if (!cmd->str)
+        return ;
+    cmd->str[cnt + red_cnt] = NULL;
+}
 int	count_pipes(char *str)
 {
 	int	count;
