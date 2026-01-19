@@ -6,13 +6,22 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 20:03:13 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/19 22:04:14 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/19 22:22:47 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	*exit_status(char *operation, int new_stat)
+int	parse_status(int status)
+{
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (128 + WTERMSIG(status));
+	return (WSTOPSIG(status));
+}
+
+int	*exit_status(char *operation, int *new_stat)
 {
 	static int	*status;
 
@@ -21,6 +30,6 @@ int	*exit_status(char *operation, int new_stat)
 	if (start_with(operation, "get") == 0)
 		return (status);
 	else if(start_with(operation, "set") == 0)
-		*status = new_stat;
+		*status = *new_stat;
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/19 22:04:27 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/19 22:21:06 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ int	execute_bash_command(char *command, char **args, int fdi, int fdo)
 		exit (1);
 	}
 	waitpid(p, &status, 0);
-	exit_status("set", WEXITSTATUS(status));
+	status = parse_status(status);
+	exit_status("set", &status);
 	return (0);
 }
 

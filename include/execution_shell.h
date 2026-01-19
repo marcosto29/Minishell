@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/19 20:25:06 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/19 22:20:51 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void			free_environment();
 void			minishell_loop();
 int				is_built_in_command(char *command);
 int				execute_built_in_command(char *command, char **args);
-int				*exit_status(char *operation, int new_stat);
+int				*exit_status(char *operation, int *new_stat);
+int				parse_status(int status);
 #endif
