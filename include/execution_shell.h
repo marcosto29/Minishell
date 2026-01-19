@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_shell.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/14 12:29:34 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/19 20:25:06 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				start_with(char	*string, char *find);
 int				execute_command(char *command, char **arguments,
 								int fdi, int fdo);
 int				contains_string(char **string_list, char *string);
-void			free_double(char ***pointer);
+void			free_double(char **pointer);
 t_dictionary	*environment(char *operation, char **env_arg);
 char			**dict_to_list(t_dictionary *dict);
 char			*find_key(char *str);
@@ -44,6 +44,7 @@ void			modify_key_value(char *key, char *value);
 void			show_environment();
 void			free_environment();
 void			minishell_loop();
-int	is_built_in_command(char *command);
-int	execute_built_in_command(char *command, char **args);
+int				is_built_in_command(char *command);
+int				execute_built_in_command(char *command, char **args);
+int				*exit_status(char *operation, int new_stat);
 #endif

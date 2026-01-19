@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:18:01 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/14 12:30:07 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:04:32 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_dictionary	*initialize_env(char **env_arg)
 			new->previous = first;
 		}
 		previous = new;
-		free_double(&splitted_arg);
+		free_double(splitted_arg);
 		i++;
 	}
 	return (first);

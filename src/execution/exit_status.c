@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 21:39:57 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/15 14:04:28 by matoledo         ###   ########.fr       */
+/*   Created: 2026/01/19 20:03:13 by matoledo          #+#    #+#             */
+/*   Updated: 2026/01/19 22:04:14 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	export(char **args)
+int	*exit_status(char *operation, int new_stat)
 {
-	char	**splitted_args;
-	int		i;
+	static int	*status;
 
-	i = 0;
-	if (ft_size_dc(args) == 0)
-		show_environment();
-	else
-	{
-		while (args[i])
-		{
-			if (ft_strchr(args[i], '='))
-			{
-				splitted_args = split(args[i], '=', 1);
-				add_key_value(splitted_args[0], splitted_args[1]);
-				free_double(splitted_args);
-			}
-			i++;
-		}
-	}
-	return (0);
+	if (!status)
+		status = ft_calloc(sizeof(int), 1);
+	if (start_with(operation, "get") == 0)
+		return (status);
+	else if(start_with(operation, "set") == 0)
+		*status = new_stat;
+	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/14 12:30:03 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/19 22:04:27 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*search_bash_command(char *command)
 		joined_path = NULL;
 		divided_path++;
 	}
-	free_double(&aux);
+	free_double(aux);
 	return (joined_path);
 }
 
@@ -58,6 +58,7 @@ int	execute_bash_command(char *command, char **args, int fdi, int fdo)
 	char	*command_path;
 	char	**list_dictionary;
 	pid_t	p;
+	int		status;
 
 	p = fork();
 	if (p == 0)
@@ -72,12 +73,13 @@ int	execute_bash_command(char *command, char **args, int fdi, int fdo)
 			dup2(fdi, 0);
 			execve(command_path, args, list_dictionary);
 			perror(command);
-			free_double(&list_dictionary);
+			free_double(list_dictionary);
 		}
 		free(command_path);
 		exit (1);
 	}
-	wait(NULL);
+	waitpid(p, &status, 0);
+	exit_status("set", WEXITSTATUS(status));
 	return (0);
 }
 

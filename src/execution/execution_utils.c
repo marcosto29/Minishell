@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:54:28 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/14 12:29:54 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:04:53 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,18 +214,18 @@ int	start_with(char	*string, char *find)
 	return (0);
 }
 
-void	free_double(char ***pointer)
+void	free_double(char **pointer)
 {
 	char	**aux;
 
-    if (!pointer || !*pointer)
-        return ;
-    aux = *pointer;
-    while (*aux)
-    {
-        free(*aux);
-        aux++;
-    }
-    free(*pointer);
-    *pointer = NULL;
+	if(!pointer || !*pointer)
+		return;
+	aux = pointer;
+	while (*aux)
+	{
+		free(*aux);
+		aux++;
+	}
+	free(pointer);
+	pointer = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/16 15:32:03 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/19 19:00:09 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ char *redirection(t_lexer *start)
         return("<<");
     return(NULL);
 }
-void free_parcer(t_simple_cmds *list)
+void free_parcer(t_simple_cmds *cmd)
 {
-	if (list->str)
-		free_double(&list->str);
-    if (list->hd_file_name)
-		free_double(&list->hd_file_name);
-    free(list);
+	if (cmd->str)
+		free_double(cmd->str);
+    if (cmd->hd_file_name)
+		free_double(cmd->hd_file_name);
+    free(cmd);
 }
 void fill_redirections(t_simple_cmds *cmd, t_lexer *start, int *i)
 {

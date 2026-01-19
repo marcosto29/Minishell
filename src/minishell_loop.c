@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/13 20:01:28 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/19 20:07:56 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_list(t_node *list)
 void	minishell_loop(void)
 {
 	char			*line;
-	t_simple_cmds	*cmd_1;
+	t_simple_cmds	*cmd;
 	char			*line_char;
 	int				result;
 
@@ -41,9 +41,9 @@ void	minishell_loop(void)
 		if (line && *line)
 		{
 			add_history(line);
-			cmd_1 = ft_calloc(sizeof(t_simple_cmds), 1);
-			result = exec_loop(line, cmd_1);
-			free_parcer(cmd_1);
+			cmd = ft_calloc(sizeof(t_simple_cmds), 1);
+			result = exec_loop(line, cmd);
+			free_parcer(cmd);
 		}
 		free(line_char);
 		free(line);
@@ -51,5 +51,6 @@ void	minishell_loop(void)
 			break ;
 	}
 	free_environment();
+	free(exit_status("get", NULL));
 	rl_clear_history();
 }

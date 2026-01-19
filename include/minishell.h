@@ -28,7 +28,7 @@ typedef struct node
 }	t_node;
 
 int	count_pipes(char *str);
-int	exec_loop(char *str, t_simple_cmds *cmd_1);
+int	exec_loop(char *str, t_simple_cmds *cmd);
 typedef struct s_global
 {
 	int	in_cmd;
