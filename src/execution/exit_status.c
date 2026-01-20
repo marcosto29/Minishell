@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 20:03:13 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/19 22:22:47 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:21:56 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	*exit_status(char *operation, int *new_stat)
 		status = ft_calloc(sizeof(int), 1);
 	if (start_with(operation, "get") == 0)
 		return (status);
-	else if(start_with(operation, "set") == 0)
+	else if (start_with(operation, "set") == 0)
 		*status = *new_stat;
 	return (NULL);
 }

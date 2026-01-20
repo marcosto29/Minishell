@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/20 18:05:02 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:40:25 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,34 +51,38 @@ char	*search_bash_command(char *command)
 	return (joined_path);
 }
 
+void	thread_execution(char *command, char **args, int fdi, int fdo)
+{
+	char	*command_path;
+	char	**list_dictionary;
+
+	signal(SIGQUIT, sigquit_handler);
+	command_path = search_bash_command(command);
+	if (!command_path)
+		printf("%s: command not found\n", command);
+	else
+	{
+		list_dictionary = dict_to_list(environment("get", NULL));
+		dup2(fdo, 1);
+		dup2(fdi, 0);
+		execve(command_path, args, list_dictionary);
+		perror(command);
+		free_double(list_dictionary);
+	}
+	free(command_path);
+	exit (1);
+}
+
 // == 0 para hacer ejecución con padre != 0 para hacer ejecución con hijo
 //(normalmente uso esta cuano necesito debuggear)
 int	execute_bash_command(char *command, char **args, int fdi, int fdo)
 {
-	char	*command_path;
-	char	**list_dictionary;
 	pid_t	p;
 	int		status;
 
 	p = fork();
 	if (p == 0)
-	{
-		signal(SIGQUIT, sigquit_handler);
-		command_path = search_bash_command(command);
-		if (!command_path)
-			printf("%s: command not found\n", command);
-		else
-		{
-			list_dictionary = dict_to_list(environment("get", NULL));
-			dup2(fdo, 1);
-			dup2(fdi, 0);
-			execve(command_path, args, list_dictionary);
-			perror(command);
-			free_double(list_dictionary);
-		}
-		free(command_path);
-		exit (1);
-	}
+		thread_execution(command, args, fdi, fdo);
 	waitpid(p, &status, 0);
 	status = parse_status(status);
 	exit_status("set", &status);

@@ -6,16 +6,33 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:18:01 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/15 14:04:32 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:37:18 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+t_dictionary	*create_env_node(char *env)
+{
+	t_dictionary	*new;
+	char			**splitted;
+
+	splitted = split(env, '=', 1);
+	new = ft_calloc(sizeof(t_dictionary), 1);
+	if (!new)
+		return (NULL);
+	new->key = ft_strdup(splitted[0]);
+	if (splitted[1])
+		new->value = ft_strdup(splitted[1]);
+	else
+		new->value = ft_strdup("");
+	free_double(splitted);
+	return (new);
+}
+
 t_dictionary	*initialize_env(char **env_arg)
 {
 	int				i;
-	char			**splitted_arg;
 	t_dictionary	*new;
 	t_dictionary	*previous;
 	t_dictionary	*first;
@@ -25,13 +42,7 @@ t_dictionary	*initialize_env(char **env_arg)
 	i = 0;
 	while (env_arg[i] != NULL)
 	{
-		splitted_arg = split(env_arg[i], '=', 1);
-		new = ft_calloc(sizeof(t_dictionary), 1);
-		new->key = ft_strdup(splitted_arg[0]);
-		if (splitted_arg[1])
-			new->value = ft_strdup(splitted_arg[1]);
-		else
-			new->value = ft_strdup("");
+		new = create_env_node(env_arg[i]);
 		new->previous = previous;
 		if (previous)
 			previous->next = new;
@@ -41,7 +52,6 @@ t_dictionary	*initialize_env(char **env_arg)
 			new->previous = first;
 		}
 		previous = new;
-		free_double(splitted_arg);
 		i++;
 	}
 	return (first);

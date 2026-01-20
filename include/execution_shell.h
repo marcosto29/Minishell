@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/19 22:20:51 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:54:54 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			ft_strlcopy(char *to_copy, char *copied);
 char			*ft_strcat(char *string1, char *string2);
 int				start_with(char	*string, char *find);
 int				execute_command(char *command, char **arguments,
-								int fdi, int fdo);
+					int fdi, int fdo);
 int				contains_string(char **string_list, char *string);
 void			free_double(char **pointer);
 t_dictionary	*environment(char *operation, char **env_arg);
@@ -41,9 +41,9 @@ char			*find_key(char *str);
 void			add_key_value(char *key, char *value);
 void			remove_key_value(char *key);
 void			modify_key_value(char *key, char *value);
-void			show_environment();
-void			free_environment();
-void			minishell_loop();
+void			show_environment(void);
+void			free_environment(void);
+void			minishell_loop(void);
 int				is_built_in_command(char *command);
 int				execute_built_in_command(char *command, char **args);
 int				*exit_status(char *operation, int *new_stat);
