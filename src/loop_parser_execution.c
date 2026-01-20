@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_parser_execution.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/19 20:23:22 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/20 15:48:26 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,22 @@ int	heredoc(char *break_w)
 		return (-1);
 	}
 	g_global.in_heredoc = 1;
+	g_global.heredoc_sigint = 0;
 	while (1)
 	{
 		line = readline(">");
-		if (ft_strncmp(line, break_w, ft_size(break_w, sizeof(char)) + 1) == 0)
+		if (g_global.heredoc_sigint)
 		{
-			free(line);
+			if (line)
+				free(line);
+			close(com_pipe[1]);
+			g_global.in_heredoc = 0;
+			return (-1);
+		}
+		if (!line || ft_strncmp(line, break_w, ft_size(break_w, sizeof(char)) + 1) == 0)
+		{
+			if (line)
+				free(line);
 			break ;
 		}
 		write(com_pipe[1], line, ft_strlen(line));
@@ -111,7 +121,7 @@ int	*communication(t_simple_cmds *cmd, int fdi, int *pipe, int iter)
 	handle_redirections(cmd, &fdi, &fdo);
 	if (fdi == -1 || fdo == -1)
 	{
-		exit_status("set", errno);
+		exit_status("set", &errno);
 		return (NULL);
 	}
 	communication_flux = ft_calloc(sizeof(int), 2);

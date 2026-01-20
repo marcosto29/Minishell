@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/19 22:19:18 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/20 16:12:27 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	minishell_loop(void)
 	while (1)
 	{
 		line_char = ft_strjoin(find_key("PWD"), ": ");
+		g_global.in_readline = 1;
 		line = readline(line_char);
+		g_global.in_readline = 0;
 		rl_on_new_line();
 		if (line && *line)
 		{

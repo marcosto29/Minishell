@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:58:06 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/16 16:11:08 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/20 18:01:03 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,28 @@ int	event(void)
 
 void	sigint_handler(int sig)
 {
-	if (!g_global.in_heredoc)
-		ft_putstr_fd("\n", STDERR_FILENO);
-	if (g_global.in_cmd)
+	if(!g_global.in_heredoc)
+		write(STDOUT_FILENO, "\n", 1);
+	if (g_global.in_heredoc)
 	{
-		rl_replace_line("", 0);
-		rl_redisplay();
+		g_global.heredoc_sigint = 1;
 		rl_done = 1;
 		return ;
 	}
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	if (g_global.in_readline)
+	{
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 	(void) sig;
 }
 
 void	sigquit_handler(int sig)
 {
-	ft_putstr_fd("Quit: ", STDERR_FILENO);
-	ft_putnbr_fd(sig, STDERR_FILENO);
-	ft_putchar_fd('\n', STDERR_FILENO);
+	write(STDERR_FILENO, "Quit (core dumped)\n", 19);
+	signal(sig, SIG_DFL);
+	kill(getpid(), SIGQUIT);
 }
 
 void	init_signals(void)

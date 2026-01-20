@@ -33,7 +33,10 @@ typedef struct s_global
 {
 	int	in_cmd;
 	int	in_heredoc;
+	int	heredoc_sigint;
+	int	in_readline;
 }	t_global;
 extern t_global	g_global;
 void	init_signals(void);
+void	sigquit_handler(int sig);
 #endif
