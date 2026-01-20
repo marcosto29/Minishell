@@ -1,0 +1,16 @@
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_PATH) -L/usr/local/lib -I/usr/local/include -lreadline
+	@echo "$(NAME): $(GREEN)object files were created$(RESET)"
+	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+	@$(CC) $(CFLAGS) -I$(LIBFT_PATH) -c $< -o $@
+	@echo "$(NAME): $(GREEN)$(OBJ) was created$(RESET)"
+	@$(MAKE) -C $(LIBFT_PATH)
+	@echo "$(NAME): $(GREEN)$(LIBFT) was created$(RESET)"
+	@$(MAKE) -C $(LIBFT_PATH) clean
+	@rm -f $(OBJ)
+	@echo "$(NAME): $(RED)$(OBJ) was deleted$(RESET)"
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
+	@$(MAKE) -C $(LIBFT_PATH) fclean
+	@echo "$(NAME): $(RED)$(LIBFT) was deleted$(RESET)"
+	@rm $(NAME)
+	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"

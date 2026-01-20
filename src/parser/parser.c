@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/19 19:00:09 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/20 21:19:41 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ void fill_redirections(t_simple_cmds *cmd, t_lexer *start, int *i)
         (*i)++;
     }
 }
-int count_redirections(t_lexer *start)
-{
-    int red_cnt;
-    t_lexer *tmp;
+// int count_redirections(t_lexer *start)
+// {
+//     int red_cnt;
+//     t_lexer *tmp;
 
-    tmp = start;
-    red_cnt = 0;
-    while (tmp && tmp->token != PIPE)
-    {
-        if (tmp->token > 1 && tmp->token <= 5)
-            red_cnt++;
-        tmp = tmp->next;
-    }
-    return (red_cnt);
-}
+//     tmp = start;
+//     red_cnt = 0;
+//     while (tmp && tmp->token != PIPE)
+//     {
+//         if (tmp->token > 1 && tmp->token <= 5)
+//             red_cnt++;
+//         tmp = tmp->next;
+//     }
+//     return (red_cnt);
+// }
 
 t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start)
 {
@@ -69,7 +69,7 @@ t_lexer *fill_cmds(t_simple_cmds *cmd, t_lexer *start)
 
     tmp = start;
     str_alloc(tmp, cmd);
-    j = count_redirections(start);
+    j = 0;
     k = 0;
     while (start && start->token != PIPE)
     {
