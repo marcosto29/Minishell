@@ -6,34 +6,37 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:19:51 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/19 19:34:45 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/21 13:22:08 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void str_alloc(t_lexer *start, t_simple_cmds *cmd)
+void	str_alloc(t_lexer *start, t_simple_cmds *cmd)
 {
-    int cnt = 0;
-    int red_cnt = 0;
-    t_lexer *tmp;
-    
-    tmp = start;
-    while (tmp && tmp->token != PIPE)
-    {
-        if (tmp->token == 0 && tmp->str)
-            cnt++;
-        else if (tmp->token > 1 && tmp->token <= 5)
-            red_cnt++;
-        tmp = tmp->next;
-    }
-    if (cmd->str)
-        free_double(cmd->str);
-    cmd->str = ft_calloc((cnt + red_cnt + 1), sizeof(char *));
-    if (!cmd->str)
-        return ;
-    cmd->str[cnt + red_cnt] = NULL;
+	int		cnt;
+	int		red_cnt;
+	t_lexer	*tmp;
+
+	cnt = 0;
+	red_cnt = 0;
+	tmp = start;
+	while (tmp && tmp->token != PIPE)
+	{
+		if (tmp->token == 0 && tmp->str)
+			cnt++;
+		else if (tmp->token > 1 && tmp->token <= 5)
+			red_cnt++;
+		tmp = tmp->next;
+	}
+	if (cmd->str)
+		free_double(cmd->str);
+	cmd->str = ft_calloc((cnt + red_cnt + 1), sizeof(char *));
+	if (!cmd->str)
+		return ;
+	cmd->str[cnt + red_cnt] = NULL;
 }
+
 int	count_pipes(char *str)
 {
 	int	count;
@@ -61,13 +64,14 @@ int	count_pipes(char *str)
 	}
 	return (count);
 }
-void redirections_malloc (t_simple_cmds *cmd)
+
+void	redirections_malloc(t_simple_cmds *cmd)
 {
-    int cnt;
-	t_lexer *aux;
+	int		cnt;
+	t_lexer	*aux;
 
 	aux = cmd->tokens;
-    cnt = 0;
+	cnt = 0;
 	while (aux)
 	{
 		if (aux->token > 1 && aux->token <= 5)

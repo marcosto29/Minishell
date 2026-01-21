@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:58:06 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/20 18:01:03 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/21 13:20:01 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	event(void)
 
 void	sigint_handler(int sig)
 {
-	if(!g_global.in_heredoc)
+	if (!g_global.in_heredoc)
 		write(STDOUT_FILENO, "\n", 1);
 	if (g_global.in_heredoc)
 	{

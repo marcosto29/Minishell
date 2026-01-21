@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:20:44 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/09 14:22:55 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/21 13:39:05 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int dollar_sign(char *str)
+int	dollar_sign(char *str)
 {
-    int i = 0;
-    while (str[i])
-    {
-        if(str[i] == '$')
-            return(i + 1);
-        i++;
-    }
-    return(i);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '$')
+			return (i + 1);
+		i++;
+	}
+	return (i);
 }

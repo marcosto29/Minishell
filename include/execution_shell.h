@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/20 19:54:54 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/21 13:42:45 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ int				is_built_in_command(char *command);
 int				execute_built_in_command(char *command, char **args);
 int				*exit_status(char *operation, int *new_stat);
 int				parse_status(int status);
+int				*communication(t_simple_cmds *cmd,
+					int fdi, int *pipe, int iter);
 #endif

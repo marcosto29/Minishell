@@ -26,25 +26,27 @@ int	handle_quotes(int i, char *str, char del)
 	return (j);
 }
 
-t_tokens is_operator(char s)
+t_tokens	is_operator(char s)
 {
-	static char token_arr[3][2] = {
-		{'|', PIPE},
-		{'>', GREAT},
-		{'<', LESS},
+	static char	token_arr[3][2] = {
+	{'|', PIPE},
+	{'>', GREAT},
+	{'<', LESS},
 	};
-	if(s == token_arr[0][0])
-		return(token_arr[0][1]);
-	if(s == token_arr[1][0])
-		return(token_arr[1][1]);
-	if(s == token_arr[2][0])
-		return(token_arr[2][1]);
-	return(0);
+
+	if (s == token_arr[0][0])
+		return (token_arr[0][1]);
+	if (s == token_arr[1][0])
+		return (token_arr[1][1]);
+	if (s == token_arr[2][0])
+		return (token_arr[2][1]);
+	return (0);
 }
-t_lexer *new_lexer(char *str, char token)
+
+t_lexer	*new_lexer(char *str, char token)
 {
-	t_lexer *new_element;
-	static int i;
+	t_lexer		*new_element;
+	static int	i;
 
 	new_element = malloc(sizeof(t_lexer));
 	if (!new_element)
@@ -54,27 +56,28 @@ t_lexer *new_lexer(char *str, char token)
 	new_element->i = i++;
 	new_element->next = NULL;
 	new_element->prev = NULL;
-	return(new_element);
+	return (new_element);
 }
 
-void ft_lexeradd_back(t_lexer **lexer, t_lexer *new)
+void	ft_lexeradd_back(t_lexer **lexer, t_lexer *new)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	if (!lexer || !new)
-        return;
+		return ;
 	tmp = (*lexer);
-	if((*lexer))
+	if ((*lexer))
 	{
-		while (tmp->next !=NULL)
+		while (tmp->next != NULL)
 			tmp = tmp->next;
 		tmp->next = new;
 		new->prev = tmp;
 	}
-	if(!(*lexer))
+	if (!(*lexer))
 		(*lexer) = new;
 }
-void free_lexer(t_lexer *list)
+
+void	free_lexer(t_lexer *list)
 {
 	t_lexer	*tmp;
 
