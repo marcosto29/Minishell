@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 13:41:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/21 13:42:04 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:32:53 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ int	heredoc(char *break_w)
 
 	line = NULL;
 	if (pipe(com_pipe) == -1)
-	{
-		perror("pipe");
-		return (-1);
-	}
+		return (perror("pipe"), -1);
 	g_global.in_heredoc = 1;
+	g_global.heredoc_sigint = 0;
 	while (1)
 	{
 		line = readline(">");
+		if (g_global.heredoc_sigint || !line)
+			break;
 		if (ft_strncmp(line, break_w, ft_size(break_w, sizeof(char)) + 1) == 0)
 		{
 			free(line);
 			break ;
 		}
-		write(com_pipe[1], line, ft_strlen(line));
-		write(com_pipe[1], "\n", 1);
+		ft_putendl_fd(line, com_pipe[1]);
 		free(line);
 	}
 	g_global.in_heredoc = 0;
+	g_global.heredoc_sigint = 0;
 	close(com_pipe[1]);
 	return (com_pipe[0]);
 }

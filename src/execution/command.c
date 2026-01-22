@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/20 20:40:25 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:44:25 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	thread_execution(char *command, char **args, int fdi, int fdo)
 	char	*command_path;
 	char	**list_dictionary;
 
-	signal(SIGQUIT, sigquit_handler);
 	command_path = search_bash_command(command);
 	if (!command_path)
 		printf("%s: command not found\n", command);
@@ -80,20 +79,26 @@ int	execute_bash_command(char *command, char **args, int fdi, int fdo)
 	pid_t	p;
 	int		status;
 
+	g_global.in_cmd = 1;
 	p = fork();
 	if (p == 0)
 		thread_execution(command, args, fdi, fdo);
 	waitpid(p, &status, 0);
+	init_signals();
 	status = parse_status(status);
 	exit_status("set", &status);
+	g_global.in_cmd = 0;
 	return (0);
 }
 
 int	execute_command(char *command, char **args, int fdi, int fdo)
 {
+	int result;
+	
+	result = 0;
 	if (is_built_in_command(command) == 0)
 		return (execute_built_in_command(command, args));
 	else
 		return (execute_bash_command(command, args, fdi, fdo));
-	return (0);
+	return (result);
 }

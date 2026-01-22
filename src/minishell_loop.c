@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/20 16:12:27 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:14:03 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ void	minishell_loop(void)
 		line = readline(line_char);
 		g_global.in_readline = 0;
 		rl_on_new_line();
-		if (line && *line)
+		if (!line)
+		{
+			ft_putendl_fd("exit", 1);
+			result = -1;
+		}
+		else if (*line)
 		{
 			add_history(line);
 			cmd = ft_calloc(sizeof(t_simple_cmds), 1);
