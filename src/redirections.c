@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 13:41:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/22 20:32:53 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/24 11:46:28 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	out_pipe(char *redirection)
 	int	fdo;
 
 	if (start_with(redirection, ">>") == 0)
-		fdo = open(redirection + 1,
-				O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0644);
+		fdo = open(redirection + 2,
+				O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
 		fdo = open(redirection + 1,
 				O_WRONLY | O_CREAT | O_TRUNC, 0644);

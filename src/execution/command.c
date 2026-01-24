@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/22 19:44:25 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/24 11:38:24 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*search_bash_command(char *command)
 	return (joined_path);
 }
 
-void	thread_execution(char *command, char **args, int fdi, int fdo)
+void	thread_execution(char *command, char **args)
 {
 	char	*command_path;
 	char	**list_dictionary;
@@ -62,8 +62,6 @@ void	thread_execution(char *command, char **args, int fdi, int fdo)
 	else
 	{
 		list_dictionary = dict_to_list(environment("get", NULL));
-		dup2(fdo, 1);
-		dup2(fdi, 0);
 		execve(command_path, args, list_dictionary);
 		perror(command);
 		free_double(list_dictionary);
@@ -74,7 +72,7 @@ void	thread_execution(char *command, char **args, int fdi, int fdo)
 
 // == 0 para hacer ejecución con padre != 0 para hacer ejecución con hijo
 //(normalmente uso esta cuano necesito debuggear)
-int	execute_bash_command(char *command, char **args, int fdi, int fdo)
+int	execute_bash_command(char *command, char **args)
 {
 	pid_t	p;
 	int		status;
@@ -82,7 +80,7 @@ int	execute_bash_command(char *command, char **args, int fdi, int fdo)
 	g_global.in_cmd = 1;
 	p = fork();
 	if (p == 0)
-		thread_execution(command, args, fdi, fdo);
+		thread_execution(command, args);
 	waitpid(p, &status, 0);
 	init_signals();
 	status = parse_status(status);
@@ -93,12 +91,19 @@ int	execute_bash_command(char *command, char **args, int fdi, int fdo)
 
 int	execute_command(char *command, char **args, int fdi, int fdo)
 {
-	int result;
+	int	result;
+	int	saved_in;
+	int	saved_out;
 	
-	result = 0;
+	saved_in = dup(0);
+	saved_out = dup(1);
+	dup2(fdi, 0);
+	dup2(fdo, 1);
 	if (is_built_in_command(command) == 0)
-		return (execute_built_in_command(command, args));
+		result = execute_built_in_command(command, args);
 	else
-		return (execute_bash_command(command, args, fdi, fdo));
+		result = execute_bash_command(command, args);
+	dup2(saved_out, 1);
+	dup2(saved_in, 0);
 	return (result);
 }
