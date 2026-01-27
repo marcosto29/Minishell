@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/27 11:30:56 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:40:51 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	exec_loop(char *str, t_simple_cmds	*cmd)
 	int				*fd;
 	int				com_pipe[2];
 	int				fdi;
+	int					red_idx;
 
 	fdi = 0;
+	red_idx = 0;
 	list = handle_tokens(str);
 	i = 0;
 	cmd->tokens = list;
@@ -32,7 +34,7 @@ int	exec_loop(char *str, t_simple_cmds	*cmd)
 	{
 		if (pipe(com_pipe) == -1)
 			perror("pipe");
-		list = fill_cmds(cmd, list);
+		list = fill_cmds(cmd, list, &red_idx);
 		fd = communication(cmd, fdi, com_pipe, i);
 		if (fd && *cmd->str)
 			exit_value = execute_command(cmd->str[0], cmd->str, fd[0], fd[1]);

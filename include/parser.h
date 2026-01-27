@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:47:26 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/20 19:57:42 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:40:51 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_simple_cmds
 	t_lexer	*tokens;
 }	t_simple_cmds;
 
-t_lexer	*fill_cmds(t_simple_cmds *cmd, t_lexer *start);
+t_lexer	*fill_cmds(t_simple_cmds *cmd, t_lexer *start, int *red_idx);
 void	free_parcer(t_simple_cmds *list);
 void	redirections_malloc(t_simple_cmds *cmd);
 void	str_alloc(t_lexer *start, t_simple_cmds *cmd);

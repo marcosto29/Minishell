@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/27 11:25:37 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:43:45 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,12 @@ void	fill_redirections(t_simple_cmds *cmd, t_lexer *start, int *i)
 	if (redirection(start) && *i < cmd->num_redirections)
 	{
 		if (start->next->str && start->next->token < 2)
+		{
+			if (cmd->hd_file_name[*i])
+				free(cmd->hd_file_name[*i]);
 			cmd->hd_file_name[*i] = ft_strjoin(redirection(start),
 					start->next->str);
+		}
 		else
 			cmd->str[*i] = ft_strdup(redirection(start));
 		(*i)++;
@@ -65,7 +69,7 @@ void	fill_redirections(t_simple_cmds *cmd, t_lexer *start, int *i)
 //     return (red_cnt);
 // }
 
-t_lexer	*fill_cmds(t_simple_cmds *cmd, t_lexer *start)
+t_lexer	*fill_cmds(t_simple_cmds *cmd, t_lexer *start, int *red_idx)
 {
 	int		j;
 	int		k;
@@ -74,7 +78,7 @@ t_lexer	*fill_cmds(t_simple_cmds *cmd, t_lexer *start)
 	tmp = start;
 	str_alloc(tmp, cmd);
 	j = 0;
-	k = 0;
+	k = *red_idx;
 	while (start && start->token != PIPE)
 	{
 		if (start->token == 0 && start->str)
@@ -89,6 +93,7 @@ t_lexer	*fill_cmds(t_simple_cmds *cmd, t_lexer *start)
 		}
 		start = start->next;
 	}
+	*red_idx = k;
 	if (start && start->token == PIPE)
 		return (start->next);
 	return (start);
