@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/27 11:43:45 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:50:55 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ void	free_parcer(t_simple_cmds *cmd)
 	if (cmd->str)
 		free_double(cmd->str);
 	if (cmd->hd_file_name)
-		free_double(cmd->hd_file_name);
+	{
+		if (cmd->num_redirections > 0)
+			free_double(cmd->hd_file_name);
+		else
+			free(cmd->hd_file_name);
+	}
 	free(cmd);
 }
 
