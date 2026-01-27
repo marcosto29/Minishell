@@ -1,25 +1,25 @@
-_Este proyecto ha sido creado como parte del currículo de 42 por matoledo, aosset-o_.
+_This project has been created as part of the 42's curriculum by matoledo, aosset-o_.
 
 # Minishell
 
-## Descripción
+## Description
 
-La Minishell es un proyecto destinado a un estudio profundo de Bash y su funcionamiento.
+The Minishell is a project focused on the deep study of Bash and it's functionality
 
-El objetivo es simular un terminal de Bash "limitada" con el uso de C. Gestionando problemas como: pipes de comunicación, ejecución de comandos (con argumentos y opciones), señales por teclado, etc.
+The objective is to emulate a "limited" Bash terminal with C. Managing pipes, communication, command execution (with arguments and options), keyboard signals, etc.
 
-De esta forma al acabar el proyecto debería ser capaz de ejecutar correctamente gran parte de los comandos en bash, desde _ls_, hasta combinaciones como _cat < input.txt | ls -l > output.txt_. Realizando correctamente tanto las tareas de parseo, de redirección y de ejecución.
+At the end, the project would exectue correctly Bash commands such as _ls_ and even more complex ones like _cat < input.txt | ls -l > output.txt_. Parsing, redirecting and executing everything correctly.
 
-## Instrucciones
+## Instructions
 
-Este proyecto cuenta con el uso de un archivo Makefile, de esta forma, el uso del comando _make_ desde la raiz del proyecto permite la compilación y puesta a punto para su uso facilmente.
+This projects includes a Makefile, making it more easy to complie with the use of the _make_ command from the root of of the project.
 
-Una vez compilado solo hay que ejecutar el programa resultante en la terminal, poniendo _./minishell_
+Once compiled, to execute it, write _./minishell_ on the terminal to make it work
 
 ## Recursos
 
-Este proyecto ha sido desarrollado gracias a documentaciones como la [_documentación de Linux_](https://man7.org/index.html) y la [_documentación de GNU_](https://www.gnu.org/doc/doc.html) donde explican con detalle gran parte de las funciones necesarias y comportamiento de la terminal así como ejemplos de uso.
+This project has been developed thanks to the [_Linux documentation_](https://man7.org/index.html) and the [_GNU documentation_](https://www.gnu.org/doc/doc.html) where is clearly explained the behaviour of the Bash terminal and its functions.
 
-Para complementar esa información se ha usado la ayuda de agentes a los que se ha acudido con fines informativos (nunca pidiendo que crearan desde cero código, funcionalidades, etc.).
+Copilot has been used to complement this information (never asking it to create code or functionality from scratch).
 
-Por último, se ha hecho un gran uso de Youtube y tutoriales creados por la comunidad.
+Finally, a lot of youtube videos created by the community has been also used to gain information.
