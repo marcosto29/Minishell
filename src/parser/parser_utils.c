@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:19:51 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/21 13:22:08 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:27:39 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	redirections_malloc(t_simple_cmds *cmd)
 	cnt = 0;
 	while (aux)
 	{
-		if (aux->token > 1 && aux->token <= 5)
+		if (aux->token > 1 && aux->token <= 5 && aux->next->token < 2)
 			cnt++;
 		aux = aux->next;
 	}

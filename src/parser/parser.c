@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/21 13:24:59 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:25:37 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	fill_redirections(t_simple_cmds *cmd, t_lexer *start, int *i)
 		return ;
 	if (redirection(start) && *i < cmd->num_redirections)
 	{
-		if (start->next->str)
+		if (start->next->str && start->next->token < 2)
 			cmd->hd_file_name[*i] = ft_strjoin(redirection(start),
 					start->next->str);
 		else
