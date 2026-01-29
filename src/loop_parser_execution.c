@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/27 11:40:51 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/27 18:30:07 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	exec_loop(char *str, t_simple_cmds	*cmd)
 	fdi = 0;
 	red_idx = 0;
 	list = handle_tokens(str);
+	if (!list)
+		return (*exit_status("get", NULL));
 	i = 0;
 	cmd->tokens = list;
 	redirections_malloc(cmd);

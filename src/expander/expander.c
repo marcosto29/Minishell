@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:20:01 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/21 13:38:30 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/27 18:20:15 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	handle_dollar(char *result, char *value)
 	char	*tmp;
 
 	i = 0;
-	if (!find_key(value))
+	if (!find_key(value) )
 		return (0);
 	while (result[i] != '\0')
 		i++;

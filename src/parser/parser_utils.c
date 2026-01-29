@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:19:51 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/27 11:44:42 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/27 18:11:51 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	redirections_malloc(t_simple_cmds *cmd)
 	cnt = 0;
 	while (aux)
 	{
-		if (aux->token > 1 && aux->token <= 5 && aux->next->token < 2)
+		if (aux->token > 1 && aux->token <= 5 && aux->next && aux->next->token < 2)
 			cnt++;
 		aux = aux->next;
 	}

@@ -12,6 +12,18 @@
 
 #include "minishell.h"
 
+static int	syntax_error(char unexpected)
+{
+	int	status;
+
+	status = 2;
+	ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
+	ft_putchar_fd(unexpected, 2);
+	ft_putendl_fd("'", 2);
+	exit_status("set", &status);
+	return (-1);
+}
+
 int	add_node(char *str, t_lexer **list, t_tokens token)
 {
 	t_lexer	*node;
@@ -25,26 +37,24 @@ int	add_node(char *str, t_lexer **list, t_tokens token)
 
 int	read_operator(int i, char *str, t_lexer **lexer)
 {
+	if (str[i] == '<' && str[i + 1] && str[i + 2]
+		&& is_operator(str[i + 1]) == LESS && is_operator(str[i + 2]) == LESS)
+		return (syntax_error('<'));
+	if (str[i] == '<' && str[i + 1] && is_operator(str[i + 1]) == GREAT)
+		return (syntax_error('<'));
+	if (str[i] == '>' && str[i + 1] && str[i + 2]
+		&& is_operator(str[i + 1]) == GREAT && is_operator(str[i + 2]) == GREAT)
+		return (syntax_error('>'));
+	if (str[i] == '>' && str[i + 1] && is_operator(str[i + 1]) == LESS)
+		return (syntax_error('<'));
 	if (is_operator(str[i]) == GREAT && is_operator(str[i + 1]) == GREAT)
-	{
-		add_node(NULL, lexer, GREAT_GREAT);
-		return (2);
-	}
+		return (add_node(NULL, lexer, GREAT_GREAT), 2);
 	if (is_operator(str[i]) == LESS && is_operator(str[i + 1]) == LESS)
-	{
-		add_node(NULL, lexer, LESS_LESS);
-		return (2);
-	}
+		return (add_node(NULL, lexer, LESS_LESS), 2);
 	if (is_operator(str[i]) == GREAT)
-	{
-		add_node(NULL, lexer, GREAT);
-		return (1);
-	}
+		return (add_node(NULL, lexer, GREAT), 1);
 	if (is_operator(str[i]) == LESS)
-	{
-		add_node(NULL, lexer, LESS);
-		return (1);
-	}
+		return (add_node(NULL, lexer, LESS), 1);
 	if (is_operator(str[i]) == PIPE)
 		return (add_node(NULL, lexer, PIPE), 1);
 	return (0);
@@ -91,6 +101,11 @@ t_lexer	*handle_tokens(char *str)
 			j = read_operator(i, str, &list);
 		else
 			j = read_word(i, str, &list);
+		if (j < 0)
+		{
+			free_lexer(list);
+			return (NULL);
+		}
 		i += j;
 	}
 	return (list);
