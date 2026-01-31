@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:25:01 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/10/28 12:25:18 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:45:32 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isspace(char c)
+int	ft_isspace(char c)
 {
-	if(c == 32 || (c>= 9 && c<=14))
-		return(1);
-	return(0);
+	if (c == 32 || (c >= 9 && c <= 14))
+		return (1);
+	return (0);
 }

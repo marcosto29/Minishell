@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 18:01:53 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/07 16:29:05 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:46:09 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,3 @@ char	**ft_split(char const *s, char c)
 	}
 	return (NULL);
 }
-

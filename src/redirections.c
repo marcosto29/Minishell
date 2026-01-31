@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 13:41:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/24 11:46:28 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:51:04 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	heredoc(char *break_w)
 	{
 		line = readline(">");
 		if (g_global.heredoc_sigint || !line)
-			break;
+			break ;
 		if (ft_strncmp(line, break_w, ft_size(break_w, sizeof(char)) + 1) == 0)
 		{
 			free(line);

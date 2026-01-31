@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_parser_execution.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/27 18:30:07 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:51:19 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	exec_loop(char *str, t_simple_cmds	*cmd)
 	int				*fd;
 	int				com_pipe[2];
 	int				fdi;
-	int					red_idx;
+	int				red_idx;
 
 	fdi = 0;
 	red_idx = 0;

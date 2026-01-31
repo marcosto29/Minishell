@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/24 11:38:24 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:48:42 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	execute_command(char *command, char **args, int fdi, int fdo)
 	int	result;
 	int	saved_in;
 	int	saved_out;
-	
+
 	saved_in = dup(0);
 	saved_out = dup(1);
 	dup2(fdi, 0);

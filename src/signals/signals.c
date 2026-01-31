@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:58:06 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/22 20:31:51 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:50:26 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	sigquit_handler(int sig)
 	if (g_global.in_heredoc || g_global.in_cmd)
 	{
 		ft_putstr_fd("Quit (core dumped)", 2);
-		if(g_global.in_cmd)
-			write(1,"\n",1);
+		if (g_global.in_cmd)
+			write(1, "\n", 1);
 		g_global.heredoc_sigint = 1;
 		rl_done = 1;
-		return;	
+		return ;
 	}
 	else
 		signal(SIGQUIT, SIG_IGN);

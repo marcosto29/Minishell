@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:02:47 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/11/03 13:51:18 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:48:02 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void				ft_putnbr_fd(int n, int fd);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
 double				ft_atod(char *str);
-int ft_isspace(char c);
-int skip_spaces(char *str, int i);
+int					ft_isspace(char c);
+int					skip_spaces(char *str, int i);
 #endif

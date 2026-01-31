@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:32:38 by aosset-o          #+#    #+#             */
-/*   Updated: 2025/12/07 16:29:33 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/01/31 13:44:37 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str = ft_substr(s1, count, (ft_strlen(s1) - count - count_rev));
 	return (str);
 }
-
