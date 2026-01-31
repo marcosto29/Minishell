@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:06:11 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/31 14:08:36 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:02:04 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int	echo(char **args)
 			eol = 1;
 		while (args[counter])
 		{
-			printf("%s", args[counter]);
+			ft_putstr_fd(args[counter], 1);
 			if (counter < args_size - 1)
-				printf(" ");
+				ft_putstr_fd(" ", 1);
 			counter++;
 		}
 	}
 	if (eol == 0)
-		printf("\n");
+		ft_putstr_fd("\n", 1);
 	return (0);
 }
