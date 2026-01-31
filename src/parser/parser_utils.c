@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:19:51 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/31 13:49:07 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:41:07 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ int	count_pipes(char *str)
 	return (count);
 }
 
-void	redirections_malloc(t_simple_cmds *cmd)
+void	redirections_malloc(t_simple_cmds *cmd, t_lexer *start)
 {
 	int		cnt;
 	t_lexer	*aux;
 
-	aux = cmd->tokens;
+	aux = start;
 	cnt = 0;
-	while (aux)
+	while (aux && aux->token != PIPE)
 	{
 		if (aux->token > 1 && aux->token <= 5
 			&& aux->next && aux->next->token < 2)

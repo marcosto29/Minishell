@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_parser_execution.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/31 13:51:19 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:41:39 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,13 @@ int	exec_loop(char *str, t_simple_cmds	*cmd)
 		return (*exit_status("get", NULL));
 	i = 0;
 	cmd->tokens = list;
-	redirections_malloc(cmd);
 	cmd->num_pipes = count_pipes(str) + 1;
 	exit_value = 0;
 	while (i < cmd->num_pipes && exit_value != -1)
 	{
 		if (pipe(com_pipe) == -1)
 			perror("pipe");
-		list = fill_cmds(cmd, list, &red_idx);
+		list = fill_cmds(cmd, list, &red_idx, 0);
 		fd = communication(cmd, fdi, com_pipe, i);
 		if (fd && *cmd->str)
 			exit_value = execute_command(cmd->str[0], cmd->str, fd[0], fd[1]);
