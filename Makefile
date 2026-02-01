@@ -29,7 +29,7 @@ src/execution/execution_utils.c src/execution/environment.c src/execution/comman
 src/built_in/cd.c src/built_in/echo.c src/built_in/pwd.c src/built_in/export.c src/built_in/env.c src/built_in/unset.c\
 src/expander/expander.c src/expander/expander_utils.c\
 src/signals/signals.c\
-#src/loop_parser_execution.c src/minishell_loop.c src/redirections.c
+src/loop_parser_execution.c src/minishell_loop.c src/redirections.c
 
 OBJ = $(SRC:.c=.o)
 

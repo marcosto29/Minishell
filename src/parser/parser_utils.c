@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:19:51 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/31 18:41:07 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/02/01 20:44:43 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,14 @@ void	redirections_malloc(t_simple_cmds *cmd, t_lexer *start)
 	cmd->hd_file_name = ft_calloc((cnt + 1), sizeof(char *));
 	if (cmd->hd_file_name)
 		cmd->hd_file_name[cnt] = NULL;
+}
+
+int	ft_cmd_size(t_simple_cmds *cmds)
+{
+	int	i;
+
+	i = 0;
+	while(cmds[i].str)
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 13:41:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/31 13:51:04 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/01 20:50:13 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,22 +77,22 @@ int	out_pipe(char *redirection)
 	return (fdo);
 }
 
-void	handle_redirections(t_simple_cmds *cmd, int *fdi, int *fdo)
+void	handle_redirections(char **redirection_files, int *fdi, int *fdo)
 {
 	int	i;
 
 	i = 0;
-	while (cmd->hd_file_name[i])
+	while (redirection_files[i])
 	{
-		if (start_with(cmd->hd_file_name[i], "<") == 0)
+		if (start_with(redirection_files[i], "<") == 0)
 		{
-			*fdi = in_pipe(cmd->hd_file_name[i]);
+			*fdi = in_pipe(redirection_files[i]);
 			if (*fdi == -1)
 				return ;
 		}
-		else if (start_with(cmd->hd_file_name[i], ">") == 0)
+		else if (start_with(redirection_files[i], ">") == 0)
 		{
-			*fdo = out_pipe(cmd->hd_file_name[i]);
+			*fdo = out_pipe(redirection_files[i]);
 			if (*fdo == -1)
 				return ;
 		}
@@ -100,20 +100,46 @@ void	handle_redirections(t_simple_cmds *cmd, int *fdi, int *fdo)
 	}
 }
 
-int	*communication(t_simple_cmds *cmd, int fdi, int *pipe, int iter)
+int	check_redirections(t_simple_cmds *cmds)
+{
+	int	i;
+	int	fdi;
+	int	fdo;
+	int	result;
+
+	i = 0;
+	result = 0;
+	while (cmds[i].str)
+	{
+		if (*(cmds[i].hd_file_name))
+		{
+			fdi = 0;
+			fdo = 0;
+			handle_redirections(cmds[i].hd_file_name, &fdi, &fdo);
+			if (fdi == -1 || fdo == -1)
+				result = -1;
+			if (fdi > 2)
+				close(fdi);
+			if (fdo > 2)
+				close(fdo);
+		}
+		i++;
+	}
+	return (result);
+}
+
+int	*communication(t_simple_cmds *cmds, int fdi, int *pipe, int iter)
 {
 	int		*communication_flux;
 	int		fdo;
-	int		error;
 
 	fdo = 1;
-	if (cmd->num_pipes - iter > 1)
+	if (iter < ft_cmd_size(cmds))
 		fdo = pipe[1];
-	handle_redirections(cmd, &fdi, &fdo);
+	handle_redirections(cmds[iter].hd_file_name, &fdi, &fdo);
 	if (fdi == -1 || fdo == -1)
 	{
-		error = errno;
-		exit_status("set", &error);
+		exit_status("set", &(int){1});
 		return (NULL);
 	}
 	communication_flux = ft_calloc(sizeof(int), 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/31 18:29:40 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/02/01 20:49:09 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,70 @@ void	free_list(t_node *list)
 	}
 }
 
+// void	minishell_loop(void)
+// {
+// 	char			*line;
+// 	t_simple_cmds	*cmd;
+// 	char			*line_char;
+// 	int				result;
+
+// 	result = 0;
+// 	while (1)
+// 	{
+// 		line_char = ft_strjoin(find_key("PWD"), ": ");
+// 		g_global.in_readline = 1;
+// 		line = readline(line_char);
+// 		g_global.in_readline = 0;
+// 		rl_on_new_line();
+// 		if (!line)
+// 		{
+// 			ft_putendl_fd("exit", 1);
+// 			result = -1;
+// 		}
+// 		else if (*line)
+// 		{
+// 			add_history(line);
+// 			cmd = ft_calloc(sizeof(t_simple_cmds), 1);
+// 			result = exec_loop(line, cmd);
+// 			free_parcer(cmd);
+// 		}
+// 		free(line_char);
+// 		free(line);
+// 		if (result == -1)
+// 			break ;
+// 	}
+// 	free_environment();
+// 	free(exit_status("get", NULL));
+// 	rl_clear_history();
+// }
+
+t_simple_cmds	*build_commands(char *line)
+{
+	int				num_cmds;
+	t_lexer			*list;
+	t_simple_cmds	*cmds;
+
+	list = handle_tokens(line);
+	num_cmds = count_pipes(line) + 1;
+	cmds = ft_calloc(num_cmds, sizeof(t_simple_cmds));
+	fill_cmds_array(list, cmds, num_cmds);
+	free_lexer(list);
+	return (cmds);
+}
+
+
 void	minishell_loop(void)
 {
 	char			*line;
-	t_simple_cmds	*cmd;
-	char			*line_char;
+	char			*pwd;
+	t_simple_cmds	*cmds;
 	int				result;
 
-	result = 0;
 	while (1)
 	{
-		line_char = ft_strjoin(find_key("PWD"), ": ");
+		pwd = ft_strjoin(find_key("PWD"), ": ");
 		g_global.in_readline = 1;
-		line = readline(line_char);
+		line = readline(pwd);
 		g_global.in_readline = 0;
 		rl_on_new_line();
 		if (!line)
@@ -48,16 +99,13 @@ void	minishell_loop(void)
 		else if (*line)
 		{
 			add_history(line);
-			cmd = ft_calloc(sizeof(t_simple_cmds), 1);
-			result = exec_loop(line, cmd);
-			free_parcer(cmd);
+			cmds = build_commands(line);
+			result = exec_loop(cmds);
+			free_parcer(cmds);
 		}
-		free(line_char);
 		free(line);
+		free(pwd);
 		if (result == -1)
 			break ;
 	}
-	free_environment();
-	free(exit_status("get", NULL));
-	rl_clear_history();
 }

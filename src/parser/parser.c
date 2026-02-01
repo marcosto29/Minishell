@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/31 18:41:07 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/02/01 19:34:42 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ char	*redirection(t_lexer *start)
 	return (NULL);
 }
 
-void	free_parcer(t_simple_cmds *cmds, int num_cmds)
+void	free_parcer(t_simple_cmds *cmds)
 {
 	int	i;
 
 	i = 0;
-	while (i < num_cmds)
+	while (cmds[i].str)
 	{
 		if (cmds[i].str)
 			free_double(cmds[i].str);

@@ -49,7 +49,7 @@ typedef struct s_global
 extern t_global	g_global;
 
 int		count_pipes(char *str);
-int		exec_loop(char *str, t_simple_cmds *cmd);
+int		exec_loop(t_simple_cmds *cmd);
 void	init_signals(void);
 void	sigquit_handler(int sig);
 #endif
