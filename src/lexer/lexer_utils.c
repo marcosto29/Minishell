@@ -48,7 +48,7 @@ t_lexer	*new_lexer(char *str, char token)
 	t_lexer		*new_element;
 	static int	i;
 
-	new_element = malloc(sizeof(t_lexer));
+	new_element = ft_calloc(sizeof(t_lexer), 1);
 	if (!new_element)
 		return (0);
 	new_element->str = str;

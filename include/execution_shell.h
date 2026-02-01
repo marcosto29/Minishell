@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_shell.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2026/02/01 19:47:20 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/01 21:34:31 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				is_built_in_command(char *command);
 int				execute_built_in_command(char *command, char **args);
 int				*exit_status(char *operation, int *new_stat);
 int				parse_status(int status);
-int				*communication(t_simple_cmds *cmd,
+int				*communication(t_simple_cmds **cmd,
 					int fdi, int *pipe, int iter);
-int				check_redirections(t_simple_cmds *cmds);
+int				check_redirections(t_simple_cmds **cmds);
 #endif

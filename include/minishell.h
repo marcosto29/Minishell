@@ -48,8 +48,8 @@ typedef struct s_global
 }	t_global;
 extern t_global	g_global;
 
-int		count_pipes(char *str);
-int		exec_loop(t_simple_cmds *cmd);
+int		count_commands(char *str);
+int		exec_loop(t_simple_cmds **cmd);
 void	init_signals(void);
 void	sigquit_handler(int sig);
 #endif

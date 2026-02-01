@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/01 19:34:42 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/01 22:32:28 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,23 @@ char	*redirection(t_lexer *start)
 	return (NULL);
 }
 
-void	free_parcer(t_simple_cmds *cmds)
+void	free_parcer(t_simple_cmds **cmds)
 {
 	int	i;
 
 	i = 0;
-	while (cmds[i].str)
+	while (cmds[i])
 	{
-		if (cmds[i].str)
-			free_double(cmds[i].str);
-		if (cmds[i].hd_file_name)
+		if (cmds[i]->str)
+			free_double(cmds[i]->str);
+		if (cmds[i]->hd_file_name)
 		{
-			if (cmds[i].num_redirections > 0)
-				free_double(cmds[i].hd_file_name);
+			if (cmds[i]->num_redirections > 0)
+				free_double(cmds[i]->hd_file_name);
 			else
-				free(cmds[i].hd_file_name);
+				free(cmds[i]->hd_file_name);
 		}
+		free(cmds[i]);
 		i++;
 	}
 	free(cmds);
@@ -108,18 +109,18 @@ t_lexer	*fill_cmds(t_simple_cmds *cmd, t_lexer *start, int *red_idx, int j)
 		return (start->next);
 	return (start);
 }
-void	fill_cmds_array(t_lexer *start, t_simple_cmds *cmds, int num_cmds)
+void	fill_cmds_array(t_lexer *start, t_simple_cmds **cmds, int num_cmds)
 {
 	int	i;
 	int	red_indx;
 
 	i = 0;
-	while (i < num_cmds && start)
+	while (i<num_cmds && start)
 	{
+		cmds[i] =ft_calloc(sizeof(t_simple_cmds), 1);
 		red_indx = 0;
-		cmds[i].tokens = start;
-		redirections_malloc(&cmds[i], start);
-		start = fill_cmds(&cmds[i], start, &red_indx, 0);
+		redirections_malloc(cmds[i], start);
+		start = fill_cmds(cmds[i], start, &red_indx, 0);
 		i++;
 	}
 }

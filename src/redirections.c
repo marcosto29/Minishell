@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 13:41:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/02/01 20:50:13 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/01 21:36:04 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	handle_redirections(char **redirection_files, int *fdi, int *fdo)
 	}
 }
 
-int	check_redirections(t_simple_cmds *cmds)
+int	check_redirections(t_simple_cmds **cmds)
 {
 	int	i;
 	int	fdi;
@@ -109,13 +109,13 @@ int	check_redirections(t_simple_cmds *cmds)
 
 	i = 0;
 	result = 0;
-	while (cmds[i].str)
+	while (cmds[i])
 	{
-		if (*(cmds[i].hd_file_name))
+		if (*(cmds[i]->hd_file_name))
 		{
 			fdi = 0;
 			fdo = 0;
-			handle_redirections(cmds[i].hd_file_name, &fdi, &fdo);
+			handle_redirections(cmds[i]->hd_file_name, &fdi, &fdo);
 			if (fdi == -1 || fdo == -1)
 				result = -1;
 			if (fdi > 2)
@@ -128,7 +128,7 @@ int	check_redirections(t_simple_cmds *cmds)
 	return (result);
 }
 
-int	*communication(t_simple_cmds *cmds, int fdi, int *pipe, int iter)
+int	*communication(t_simple_cmds **cmds, int fdi, int *pipe, int iter)
 {
 	int		*communication_flux;
 	int		fdo;
@@ -136,7 +136,7 @@ int	*communication(t_simple_cmds *cmds, int fdi, int *pipe, int iter)
 	fdo = 1;
 	if (iter < ft_cmd_size(cmds))
 		fdo = pipe[1];
-	handle_redirections(cmds[iter].hd_file_name, &fdi, &fdo);
+	handle_redirections(cmds[iter]->hd_file_name, &fdi, &fdo);
 	if (fdi == -1 || fdo == -1)
 	{
 		exit_status("set", &(int){1});

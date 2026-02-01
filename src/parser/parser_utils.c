@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:19:51 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/01 20:44:43 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/01 22:26:45 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	str_alloc(t_lexer *start, t_simple_cmds *cmd)
 	cmd->str[cnt + red_cnt] = NULL;
 }
 
-int	count_pipes(char *str)
+int	count_commands(char *str)
 {
 	int	count;
 	int	i;
 
-	count = 0;
+	count = 1;
 	i = 0;
 	while (str[i])
 	{
@@ -80,17 +80,16 @@ void	redirections_malloc(t_simple_cmds *cmd, t_lexer *start)
 		aux = aux->next;
 	}
 	cmd->num_redirections = cnt;
-	cmd->hd_file_name = ft_calloc((cnt + 1), sizeof(char *));
-	if (cmd->hd_file_name)
-		cmd->hd_file_name[cnt] = NULL;
+	if(cnt > 0)
+		cmd->hd_file_name = ft_calloc((cnt + 1), sizeof(char *));
 }
 
-int	ft_cmd_size(t_simple_cmds *cmds)
+int	ft_cmd_size(t_simple_cmds **cmds)
 {
 	int	i;
 
 	i = 0;
-	while(cmds[i].str)
+	while(cmds[i])
 		i++;
 	return (i);
 }

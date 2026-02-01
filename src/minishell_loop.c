@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/01 20:49:09 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/01 22:40:21 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ void	free_list(t_node *list)
 // 	rl_clear_history();
 // }
 
-t_simple_cmds	*build_commands(char *line)
+t_simple_cmds	**build_commands(char *line)
 {
-	int				num_cmds;
 	t_lexer			*list;
-	t_simple_cmds	*cmds;
+	t_simple_cmds	**cmds;
+	int				num_cmds;
 
+	num_cmds = count_commands(line);
 	list = handle_tokens(line);
-	num_cmds = count_pipes(line) + 1;
-	cmds = ft_calloc(num_cmds, sizeof(t_simple_cmds));
+	cmds = ft_calloc(num_cmds + 1, sizeof(t_simple_cmds *));
 	fill_cmds_array(list, cmds, num_cmds);
 	free_lexer(list);
 	return (cmds);
@@ -81,7 +81,7 @@ void	minishell_loop(void)
 {
 	char			*line;
 	char			*pwd;
-	t_simple_cmds	*cmds;
+	t_simple_cmds	**cmds;
 	int				result;
 
 	while (1)
