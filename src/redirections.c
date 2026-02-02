@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 13:41:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/02/01 21:36:04 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/02/02 09:28:07 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	check_redirections(t_simple_cmds **cmds)
 	result = 0;
 	while (cmds[i])
 	{
-		if (*(cmds[i]->hd_file_name))
+		if (cmds[i]->hd_file_name)
 		{
 			fdi = 0;
 			fdo = 0;
@@ -134,9 +134,10 @@ int	*communication(t_simple_cmds **cmds, int fdi, int *pipe, int iter)
 	int		fdo;
 
 	fdo = 1;
-	if (iter < ft_cmd_size(cmds))
+	if (iter < ft_cmd_size(cmds) - 1)
 		fdo = pipe[1];
-	handle_redirections(cmds[iter]->hd_file_name, &fdi, &fdo);
+	if (cmds[iter]->hd_file_name)
+		handle_redirections(cmds[iter]->hd_file_name, &fdi, &fdo);
 	if (fdi == -1 || fdo == -1)
 	{
 		exit_status("set", &(int){1});
