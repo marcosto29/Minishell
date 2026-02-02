@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/02 09:53:29 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/02 10:45:30 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ int	exec_loop(t_simple_cmds	**cmds)
 	fdi = 0;
 	i = 0;
 	exit_value = 0;
-	if (check_redirections(cmds) == -1)
-		return (0);
 	while (cmds[i] && exit_value != -1)
 	{
 		if (pipe(com_pipe) == -1)
 			perror("pipe");
 		fd = communication(cmds, fdi, com_pipe, i);
 		if (fd && cmds[i]->str)
-			exit_value = execute_command(cmds[i]->str[0], cmds[i]->str, fd[0], fd[1]);
+			exit_value = execute_command(cmds[i]->str[0],
+					cmds[i]->str, fd[0], fd[1]);
 		if (fdi != 0)
 			close(fdi);
 		fdi = com_pipe[0];

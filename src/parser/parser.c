@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/01 22:32:28 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/02/02 10:46:16 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,16 @@ t_lexer	*fill_cmds(t_simple_cmds *cmd, t_lexer *start, int *red_idx, int j)
 		return (start->next);
 	return (start);
 }
+
 void	fill_cmds_array(t_lexer *start, t_simple_cmds **cmds, int num_cmds)
 {
 	int	i;
 	int	red_indx;
 
 	i = 0;
-	while (i<num_cmds && start)
+	while (i < num_cmds && start)
 	{
-		cmds[i] =ft_calloc(sizeof(t_simple_cmds), 1);
+		cmds[i] = ft_calloc(sizeof(t_simple_cmds), 1);
 		red_indx = 0;
 		redirections_malloc(cmds[i], start);
 		start = fill_cmds(cmds[i], start, &red_indx, 0);

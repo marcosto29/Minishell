@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 13:41:19 by matoledo          #+#    #+#             */
-/*   Updated: 2026/02/02 09:28:07 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/02 10:39:11 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,34 +98,6 @@ void	handle_redirections(char **redirection_files, int *fdi, int *fdo)
 		}
 		i++;
 	}
-}
-
-int	check_redirections(t_simple_cmds **cmds)
-{
-	int	i;
-	int	fdi;
-	int	fdo;
-	int	result;
-
-	i = 0;
-	result = 0;
-	while (cmds[i])
-	{
-		if (cmds[i]->hd_file_name)
-		{
-			fdi = 0;
-			fdo = 0;
-			handle_redirections(cmds[i]->hd_file_name, &fdi, &fdo);
-			if (fdi == -1 || fdo == -1)
-				result = -1;
-			if (fdi > 2)
-				close(fdi);
-			if (fdo > 2)
-				close(fdo);
-		}
-		i++;
-	}
-	return (result);
 }
 
 int	*communication(t_simple_cmds **cmds, int fdi, int *pipe, int iter)

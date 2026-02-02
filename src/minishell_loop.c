@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 15:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/01 23:01:03 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/02 10:44:29 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ t_simple_cmds	**build_commands(char *line)
 	return (cmds);
 }
 
-
 void	minishell_loop(void)
 {
 	char			*line;
@@ -84,7 +83,8 @@ void	minishell_loop(void)
 	t_simple_cmds	**cmds;
 	int				result;
 
-	while (1)
+	result = 0;
+	while (result != -1)
 	{
 		pwd = ft_strjoin(find_key("PWD"), ": ");
 		g_global.in_readline = 1;
@@ -92,10 +92,7 @@ void	minishell_loop(void)
 		g_global.in_readline = 0;
 		rl_on_new_line();
 		if (!line)
-		{
-			ft_putendl_fd("exit", 1);
-			result = -1;
-		}
+			result = (ft_putendl_fd("exit", 1), -1);
 		else if (*line)
 		{
 			add_history(line);
@@ -105,7 +102,5 @@ void	minishell_loop(void)
 		}
 		free(line);
 		free(pwd);
-		if (result == -1)
-			break ;
 	}
 }
