@@ -6,30 +6,11 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 20:32:03 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/20 20:32:47 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:50:59 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*ft_str_new(char *string)
-{
-	int		size;
-	int		i;
-	char	*new_string;
-
-	size = ft_size(string, sizeof(char));
-	new_string = ft_calloc(sizeof(char), size + 1);
-	if (!new_string)
-		return (NULL);
-	i = 0;
-	while (string[i])
-	{
-		new_string[i] = string[i];
-		i++;
-	}
-	return (new_string);
-}
 
 void	ft_strlcopy(char *to_copy, char *copied)
 {

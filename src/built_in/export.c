@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 21:39:57 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/15 14:04:28 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/03 13:03:34 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	export(char **args)
 
 	i = 0;
 	if (ft_size_dc(args) == 0)
-		show_environment();
+		show_environment("declare -x ");
 	else
 	{
 		while (args[i])

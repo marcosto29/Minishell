@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:52:00 by matoledo          #+#    #+#             */
-/*   Updated: 2026/02/02 10:47:49 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:50:46 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ size_t			ft_size_dc(char **double_a);
 size_t			ft_dict_size(t_dictionary *dict);
 void			*ft_calloc(size_t type, size_t size);
 char			**split(char *string, char divider, int ammount);
-char			*ft_str_new(char *string);
 void			ft_strlcopy(char *to_copy, char *copied);
 char			*ft_strcat(char *string1, char *string2);
 int				start_with(char	*string, char *find);
@@ -41,7 +40,7 @@ char			*find_key(char *str);
 void			add_key_value(char *key, char *value);
 void			remove_key_value(char *key);
 void			modify_key_value(char *key, char *value);
-void			show_environment(void);
+void			show_environment(char *previous_string);
 void			free_environment(void);
 void			minishell_loop(void);
 int				is_built_in_command(char *command);

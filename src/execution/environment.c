@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:18:01 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/20 20:37:18 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:48:16 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,18 @@ t_dictionary	*environment(char *operation,
 	return (NULL);
 }
 
-void	show_environment(void)
+void	show_environment(char *previous_string)
 {
 	t_dictionary	*env;
 
 	env = environment("get", NULL);
+	if (!previous_string)
+		previous_string = "";
 	while (env)
 	{
 		if (env->key)
-			printf("%s=%s\n", (char *)env->key, (char *)env->value);
+			printf("%s%s=%s\n", previous_string,
+				(char *)env->key, (char *)env->value);
 		env = env->next;
 	}
 }

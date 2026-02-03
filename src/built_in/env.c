@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 18:39:03 by matoledo          #+#    #+#             */
-/*   Updated: 2025/12/22 16:29:59 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/03 13:03:39 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int	env(char **args)
 {
 	if (ft_size_dc(args) > 0)
 		printf("env no puede ser ejecutado con argumentos\n");
-	show_environment();
+	show_environment(NULL);
 	return (0);
 }

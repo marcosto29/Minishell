@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:06:46 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/02 10:46:16 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:18:11 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,6 @@ void	fill_redirections(t_simple_cmds *cmd, t_lexer *start, int *i)
 		(*i)++;
 	}
 }
-
-// int count_redirections(t_lexer *start)
-// {
-//     int red_cnt;
-//     t_lexer *tmp;
-
-//     tmp = start;
-//     red_cnt = 0;
-//     while (tmp && tmp->token != PIPE)
-//     {
-//         if (tmp->token > 1 && tmp->token <= 5)
-//             red_cnt++;
-//         tmp = tmp->next;
-//     }
-//     return (red_cnt);
-// }
 
 t_lexer	*fill_cmds(t_simple_cmds *cmd, t_lexer *start, int *red_idx, int j)
 {
