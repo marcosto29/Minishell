@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 10:19:51 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/02 10:45:50 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/03 18:12:20 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ void	str_alloc(t_lexer *start, t_simple_cmds *cmd)
 	{
 		if (tmp->token == 0 && tmp->str)
 			cnt++;
-		else if (tmp->token > 1 && tmp->token <= 5)
-			red_cnt++;
 		tmp = tmp->next;
 	}
 	if (cmd->str)
 		free_double(cmd->str);
-	cmd->str = ft_calloc((cnt + red_cnt + 1), sizeof(char *));
+	cmd->str = ft_calloc((cnt + 1), sizeof(char *));
 	if (!cmd->str)
 		return ;
 	cmd->str[cnt + red_cnt] = NULL;

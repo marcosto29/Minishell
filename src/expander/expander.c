@@ -3,91 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:20:01 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/31 13:50:39 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/05 10:26:39 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	malloc_size(char *s)
+static int	handle_dollar(char *result, char *value, int k)
 {
-	size_t	len;
-	size_t	i;
-	int		j;
-	char	*value;
-
-	len = 0;
-	i = 0;
-	while (i < ft_strlen(s))
-	{
-		if (s[i] == '$')
-		{
-			j = 0;
-			while (s[i++] && s[i] != '$' && !ft_isspace(s[i]) && s[i] != '"')
-				j++;
-			value = ft_substr(s, i - j, j);
-			len += ft_strlen(find_key(value));
-			free(value);
-		}
-		if (s[i] != '$' && i < ft_strlen(s))
-		{
-			len++;
-			i++;
-		}
-	}
-	return (len);
-}
-
-int	handle_dollar(char *result, char *value)
-{
-	int		i;
-	int		j;
 	char	*tmp;
+	char	*exit_code;
+	int		j;
 
-	i = 0;
+	if (ft_strncmp(value, "?", 1) == 0)
+	{
+		exit_code = ft_itoa(*exit_status("get", NULL));
+		j = 0;
+		while (exit_code[j])
+			result[k++] = exit_code[j++];
+		free(exit_code);
+		return (j);
+	}
 	if (!find_key(value))
 		return (0);
-	while (result[i] != '\0')
-		i++;
 	tmp = ft_strdup(find_key(value));
 	j = 0;
 	while (tmp[j])
-	{
-		result[i] = tmp[j];
-		i++;
-		j++;
-	}
+		result[k++] = tmp[j++];
 	free(tmp);
 	return (j);
+}
+
+static int	process_dollar(char *result, const char *str, size_t *i, int k)
+{
+	int		j;
+	char	*value;
+
+	j = 0;
+	(*i)++;
+	while (*i < ft_strlen(str) && str[*i] != '$'
+		&& !ft_isspace(str[*i]) && str[*i] != '"')
+	{
+		j++;
+		(*i)++;
+	}
+	value = ft_substr(str, *i - j, j);
+	k += handle_dollar(result, value, k);
+	free(value);
+	return (k);
 }
 
 char	*dollar_value(char *str)
 {
 	char	*result;
-	char	*value;
 	size_t	i;
-	int		j;
 	int		k;
 
-	result = ft_calloc(malloc_size(str) + 1, 1);
+	result = ft_calloc(calculate_total_len(str) + 1, 1);
 	i = 0;
 	k = 0;
 	while (i < ft_strlen(str))
 	{
 		if (str[i] == '$')
-		{
-			j = 0;
-			while (str[i++] && str[i] != '$'
-				&& ft_isspace(str[i]) == 0 && str[i] != '"')
-				j++;
-			value = ft_substr(str, i - j, j);
-			k += handle_dollar(result, value);
-			free(value);
-		}
-		if (str[i] != '$' && i < ft_strlen(str))
+			k = process_dollar(result, str, &i, k);
+		else
 			result[k++] = str[i++];
 	}
 	return (result);
@@ -96,22 +78,19 @@ char	*dollar_value(char *str)
 char	*expander(char *str)
 {
 	char	*tmp;
-	int		dollar;
+	int		dollar_pos;
 
-	tmp = str;
-	dollar = 0;
-	if (dollar_sign(str) != 0
-		&& str[dollar_sign(str) - 2] != '\''
-		&& str[dollar_sign(str)] != '\0')
-	{
-		dollar = 1;
+	tmp = NULL;
+	dollar_pos = dollar_sign(str);
+	if (dollar_pos != 0 && (dollar_pos < 2 || str[dollar_pos - 2] != '\'')
+		&& str[dollar_pos] != '\0')
 		tmp = dollar_value(str);
-	}
-	if (str[0] == '\'' && ft_strlen(str) > 2)
-		tmp = ft_strtrim(tmp, "'");
+	else if (str[0] == '\'' && ft_strlen(str) > 2)
+		tmp = ft_strtrim(str, "'");
 	else if (str[0] == '\"' && ft_strlen(str) > 2)
-		tmp = ft_strtrim(tmp, "\"");
-	else if (dollar == 0)
-		tmp = ft_strdup(tmp);
+		tmp = ft_strtrim(str, "\"");
+	else
+		tmp = ft_strdup(str);
 	return (tmp);
 }
+
