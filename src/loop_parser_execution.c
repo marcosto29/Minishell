@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_parser_execution.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:28:42 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/02 10:45:30 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:02:02 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	exec_loop(t_simple_cmds	**cmds)
 		if (pipe(com_pipe) == -1)
 			perror("pipe");
 		fd = communication(cmds, fdi, com_pipe, i);
-		if (fd && cmds[i]->str)
+		if (fd && *cmds[i]->str)
 			exit_value = execute_command(cmds[i]->str[0],
 					cmds[i]->str, fd[0], fd[1]);
 		if (fdi != 0)

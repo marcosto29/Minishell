@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:20:44 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/05 16:31:07 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:41:04 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ size_t	count_size_variable(const char *str, size_t *i, int *j)
 {
 	size_t	len;
 	char	*value;
-	char	*found;
 	char	*exit_code;
 
 	len = 0;
@@ -43,16 +42,15 @@ size_t	count_size_variable(const char *str, size_t *i, int *j)
 		(*i)++;
 	}
 	value = ft_substr(str, *i - *j, *j);
-	found = ft_strdup(find_key(value));
 	if (ft_strncmp(value, "?", 1) == 0)
 	{
 		exit_code = ft_itoa(*exit_status("get", NULL));
 		len = ft_strlen(exit_code);
 		free(exit_code);
 	}
-	else if (found != NULL)
-		len = ft_strlen(found);
-	return (free(value), free(found), len);
+	else if (find_key(value) != NULL)
+		len = ft_strlen(find_key(value));
+	return (free(value), len);
 }
 
 size_t	calculate_total_len(const char *str)
