@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 18:35:28 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/20 21:47:26 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/05 19:59:00 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	pwd(void)
 {
-	printf("%s\n", find_key("PWD"));
+	ft_putstr_fd(find_key("PWD"), 1);
 	return (0);
 }

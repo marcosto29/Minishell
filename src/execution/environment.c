@@ -6,7 +6,7 @@
 /*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:18:01 by matoledo          #+#    #+#             */
-/*   Updated: 2026/02/03 15:48:16 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/05 20:02:27 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,13 @@ void	show_environment(char *previous_string)
 	while (env)
 	{
 		if (env->key)
-			printf("%s%s=%s\n", previous_string,
-				(char *)env->key, (char *)env->value);
+		{
+			ft_putstr_fd(previous_string, 1);
+			ft_putstr_fd((char *)env->key, 1);
+			ft_putstr_fd("=", 1);
+			ft_putstr_fd((char *)env->value, 1);
+			ft_putstr_fd("\n", 1);
+		}
 		env = env->next;
 	}
 }

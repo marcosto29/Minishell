@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/02/05 16:24:29 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/02/05 20:00:19 by matoledo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void	thread_execution(char *command, char **args)
 
 	command_path = search_bash_command(command);
 	if (!command_path)
-		printf("%s: command not found\n", command);
+	{
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd(": command not found\n", 2);
+	}
 	else
 	{
 		list_dictionary = dict_to_list(environment("get", NULL));
@@ -67,7 +70,7 @@ void	thread_execution(char *command, char **args)
 		free_double(list_dictionary);
 	}
 	free(command_path);
-	exit (1);
+	exit (127);
 }
 
 // == 0 para hacer ejecución con padre != 0 para hacer ejecución con hijo
