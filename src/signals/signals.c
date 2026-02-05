@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:58:06 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/01/31 13:50:26 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:23:31 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void	sigint_handler(int sig)
 
 void	sigquit_handler(int sig)
 {
-	if (g_global.in_heredoc || g_global.in_cmd)
+	if (!g_global.in_cmd)
+		signal(SIGQUIT, SIG_IGN);
+	else
 	{
 		ft_putstr_fd("Quit (core dumped)", 2);
 		if (g_global.in_cmd)
@@ -47,8 +49,6 @@ void	sigquit_handler(int sig)
 		rl_done = 1;
 		return ;
 	}
-	else
-		signal(SIGQUIT, SIG_IGN);
 	(void)sig;
 }
 
@@ -56,5 +56,5 @@ void	init_signals(void)
 {
 	rl_event_hook = event;
 	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
+	signal(SIGQUIT, SIG_IGN);
 }

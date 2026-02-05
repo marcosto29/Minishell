@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:51:47 by matoledo          #+#    #+#             */
-/*   Updated: 2026/01/31 13:48:42 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:24:29 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	execute_bash_command(char *command, char **args)
 	pid_t	p;
 	int		status;
 
+	signal(SIGQUIT, sigquit_handler);
 	g_global.in_cmd = 1;
 	p = fork();
 	if (p == 0)
@@ -86,6 +87,7 @@ int	execute_bash_command(char *command, char **args)
 	status = parse_status(status);
 	exit_status("set", &status);
 	g_global.in_cmd = 0;
+	signal(SIGQUIT, SIG_IGN);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:20:01 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/05 10:26:39 by aosset-o         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:27:17 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,3 @@ char	*expander(char *str)
 		tmp = ft_strdup(str);
 	return (tmp);
 }
-

@@ -37,16 +37,18 @@ int	add_node(char *str, t_lexer **list, t_tokens token)
 
 int	read_operator(int i, char *str, t_lexer **lexer)
 {
-	if (str[i] == '<' && str[i + 1] && str[i + 2]
-		&& is_operator(str[i + 1]) == LESS && is_operator(str[i + 2]) == LESS)
+	if ((str[i] == '<' && str[i + 1] == '<')
+		&& (str[i + 2] == '<' || str[i + 2] == '\0'))
 		return (syntax_error('<'));
 	if (str[i] == '<' && str[i + 1] && is_operator(str[i + 1]) == GREAT)
 		return (syntax_error('<'));
-	if (str[i] == '>' && str[i + 1] && str[i + 2]
-		&& is_operator(str[i + 1]) == GREAT && is_operator(str[i + 2]) == GREAT)
+	if ((str[i] == '>' && str[i + 1] == '>')
+		&& (str[i + 2] == '>' || str[i + 2] == '\0'))
 		return (syntax_error('>'));
 	if (str[i] == '>' && str[i + 1] && is_operator(str[i + 1]) == LESS)
 		return (syntax_error('<'));
+	if (str[i] == '|' && str[i + 1] && is_operator(str[i + 1]) > 0)
+		return (syntax_error('|'));
 	if (is_operator(str[i]) == GREAT && is_operator(str[i + 1]) == GREAT)
 		return (add_node(NULL, lexer, GREAT_GREAT), 2);
 	if (is_operator(str[i]) == LESS && is_operator(str[i + 1]) == LESS)

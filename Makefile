@@ -15,13 +15,13 @@ RED = \033[0;31m
 RESET = \033[0m
 
 CC=gcc
-CFLAGS=-Wall -Werror -Wextra -Iinclude -g #-fsanitize=address
+CFLAGS=-Wall -Werror -Wextra -Iinclude -g
 
 LIBFT_PATH = include/libft
 
 LIBFT = $(LIBFT_PATH)/libft.a
 
-NAME = conchita
+NAME = minishell
 SRC = src/main.c src/loop_parser_execution.c src/minishell_loop.c src/redirections.c\
 src/lexer/lexer.c src/lexer/lexer_utils.c\
 src/parser/parser.c src/parser/parser_utils.c\
