@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 18:35:28 by matoledo          #+#    #+#             */
-/*   Updated: 2026/02/05 19:59:00 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:36:49 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 int	pwd(void)
 {
 	ft_putstr_fd(find_key("PWD"), 1);
+	ft_putstr_fd("\n", 1);
 	return (0);
 }

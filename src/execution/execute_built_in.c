@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   execute_built_in.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matoledo <matoledo@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: aosset-o <aosset-o@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 16:10:41 by aosset-o          #+#    #+#             */
-/*   Updated: 2026/02/05 19:52:27 by matoledo         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:04:45 by aosset-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//echo, cd, pwd, export, unset, env, exit
+// echo, cd, pwd, export, unset, env, exit
 int	is_built_in_command(char *command)
 {
 	char	**built_in_list;
 
-	built_in_list = (char *[]){"echo", "cd", "pwd", "export",
-		"unset", "env", "exit", NULL};
+	built_in_list = (char *[]){"echo", "cd", "pwd", "export", "unset", "env",
+		"exit", NULL};
 	return (contains_string(built_in_list, command));
 }
 
@@ -40,7 +40,7 @@ int	execute_built_in_command(char *command, char **args)
 	if (start_with(command, "env") == 0)
 		exit_stat = env(args);
 	if (start_with(command, "exit") == 0)
-		return(own_exit(args));
+		return (own_exit(args));
 	exit_status("set", &exit_stat);
 	return (exit_stat);
 }

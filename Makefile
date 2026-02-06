@@ -15,7 +15,7 @@ RED = \033[0;31m
 RESET = \033[0m
 
 CC=gcc
-CFLAGS=-Wall -Werror -Wextra -Iinclude -g
+CFLAGS=-Wall -Wextra -Werror -Iinclude -g
 
 LIBFT_PATH = include/libft
 
